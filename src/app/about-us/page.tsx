@@ -1,4 +1,4 @@
-import { HeroSection, PlatformSection } from '@/components/about';
+import { HeroSection, PlatformSection } from "@/components";
 
 export default function About() {
   return (
