@@ -130,3 +130,8 @@
     color: var(--color-foreground);
   }
 }
+
+/* Custom placeholder colors */
+.contact-input::placeholder {
+  color: var(--placeholder-gray);
+}
