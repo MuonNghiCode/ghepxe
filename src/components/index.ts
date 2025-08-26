@@ -9,3 +9,7 @@ export { default as MemberSection } from './about/MemberSection';
 // Contact Components
 export { default as ContactHeroSection } from './contact/HeroSection';
 export { default as ContactMainContent } from './contact/MainContent';
+
+// Download Components
+export { default as DownloadHeroSection } from './download/HeroSection';
+export { default as DownloadCTASection } from './download/CTASection';
