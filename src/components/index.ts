@@ -13,3 +13,9 @@ export { default as ContactMainContent } from './contact/MainContent';
 // Download Components
 export { default as DownloadHeroSection } from './download/HeroSection';
 export { default as DownloadCTASection } from './download/CTASection';
+
+// Partner Components
+export { default as PartnerHeroSection } from './partner/HeroSection';
+export { default as PartnerValues } from './partner/PartnerValues';
+export { default as RequirementsSection } from './partner/RequirementsSection';
+export { default as FAQSection } from './partner/FAQSection';
