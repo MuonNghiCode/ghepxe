@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-export default function HeroSection() {
+export default function AboutHeroSection() {
   return (
     <section className="relative min-h-screen flex flex-col justify-between bg-white before:content-[''] before:absolute before:inset-0 before:bg-[url('/aboutus/Vector.svg')] before:bg-cover before:bg-top before:z-0">
       {/* Hero Content */}
@@ -26,7 +26,7 @@ export default function HeroSection() {
               className="w-full h-full object-cover rounded-lg shadow-lg"
             />
           </div>
-          
+
           {/* Image 2 - Rectangle */}
           <div className="aspect-[4/3] mt-10">
             <Image
@@ -37,7 +37,7 @@ export default function HeroSection() {
               className="w-full h-full object-cover rounded-lg shadow-lg"
             />
           </div>
-          
+
           {/* Image 3 - Square */}
           <div className="aspect-square">
             <Image
@@ -48,7 +48,7 @@ export default function HeroSection() {
               className="w-full h-full object-cover rounded-lg shadow-lg"
             />
           </div>
-          
+
           {/* Image 4 - Rectangle */}
           <div className="aspect-[4/3] mt-10">
             <Image
