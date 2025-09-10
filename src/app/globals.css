@@ -122,13 +122,13 @@
   * {
     border-color: var(--color-border);
   }
-  
+
   *:focus-visible {
     outline-color: var(--color-ring);
     outline-width: 2px;
     outline-style: solid;
   }
-  
+
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
@@ -138,4 +138,13 @@
 /* Custom placeholder colors */
 .contact-input::placeholder {
   color: var(--placeholder-gray);
+}
+
+html,
+body {
+  scrollbar-gutter: stable;
+}
+
+body[data-scroll-locked] {
+  padding-right: 0 !important;
 }
