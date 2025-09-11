@@ -21,6 +21,7 @@ import { motion } from "framer-motion";
 import CountryFlag from "react-country-flag";
 import { useLanguage } from "@/context/LanguageContext";
 import { usePathname } from "next/navigation";
+
 export default function Header() {
   const [open, setOpen] = useState(false);
   const { language, setLanguage } = useLanguage();
