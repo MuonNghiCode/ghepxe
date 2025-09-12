@@ -4,7 +4,7 @@ export default function AboutHeroSection() {
   return (
     <section className="relative min-h-screen flex flex-col justify-between bg-white before:content-[''] before:absolute before:inset-0 before:bg-[url('/aboutus/Vector.svg')] before:bg-cover before:bg-top before:z-0">
       {/* Hero Content */}
-      <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto pt-40 md:pt-48">
+      <div className="relative z-10 text-center text-white px-4 max-w-screen-2xl mx-auto pt-40 md:pt-48">
         <h1 className="text-4xl md:text-6xl font-bold mb-6">Về chúng tôi</h1>
         <p className="text-lg md:text-xl leading-relaxed opacity-90">
           Tại GhepXe, chúng tôi tin rằng sự đổi mới trong vận tải có thể giúp
@@ -15,7 +15,7 @@ export default function AboutHeroSection() {
 
       {/* Images Section */}
       <div className="relative z-10 px-4 pb-8 mb-14">
-        <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-10">
+        <div className="max-w-screen-2xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-10">
           {/* Image 1 - Square */}
           <div className="aspect-square">
             <Image

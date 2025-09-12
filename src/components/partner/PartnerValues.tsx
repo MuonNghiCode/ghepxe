@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function PartnerValues() {
   return (
     <section className="py-16 bg-white">
-      <div className="max-w-7xl mx-auto px-4">
+      <div className="max-w-screen-2xl mx-auto px-4">
         <div className="grid md:grid-cols-5 gap-12 items-start mb-16">
           <div className="md:col-span-2 mb-8 md:mb-0">
             <h2 className="text-4xl md:text-5xl font-bold leading-tight">
@@ -42,7 +42,8 @@ export default function PartnerValues() {
                     Tối Ưu
                   </h3>
                   <p className="text-sm text-[var(--gray-text)] leading-relaxed">
-                    Tối ưu xe chiều về rỗng, ghép đơn dễ dàng, giảm lãng phí nhiên liệu.
+                    Tối ưu xe chiều về rỗng, ghép đơn dễ dàng, giảm lãng phí
+                    nhiên liệu.
                   </p>
                 </div>
               </div>
@@ -62,7 +63,8 @@ export default function PartnerValues() {
                     Tin Cậy
                   </h3>
                   <p className="text-sm text-[var(--gray-text)] leading-relaxed">
-                    Đơn hàng minh bạch, có hợp đồng điện tử – dễ kiểm soát, hạn chế rủi ro.
+                    Đơn hàng minh bạch, có hợp đồng điện tử – dễ kiểm soát, hạn
+                    chế rủi ro.
                   </p>
                 </div>
               </div>
@@ -82,7 +84,8 @@ export default function PartnerValues() {
                     Bền Vững
                   </h3>
                   <p className="text-sm text-[var(--gray-text)] leading-relaxed">
-                    Tối ưu xe trống chiều về, giảm thiểu khí thải CO₂ cho hành tinh xanh hơn.
+                    Tối ưu xe trống chiều về, giảm thiểu khí thải CO₂ cho hành
+                    tinh xanh hơn.
                   </p>
                 </div>
               </div>
@@ -102,7 +105,8 @@ export default function PartnerValues() {
                     Linh Hoạt
                   </h3>
                   <p className="text-sm text-[var(--gray-text)] leading-relaxed">
-                    Tự tạo chuyến – tự chọn đơn – chủ động hành trình và thu nhập.
+                    Tự tạo chuyến – tự chọn đơn – chủ động hành trình và thu
+                    nhập.
                   </p>
                 </div>
               </div>
@@ -118,7 +122,8 @@ export default function PartnerValues() {
                 Tăng thu nhập từ mỗi chuyến
               </h3>
               <p className="text-[var(--gray-text)] leading-relaxed">
-                Không chỉ dựa vào đơn chính - bạn có thể ghép thêm hàng chiều về để tối ưu doanh thu.
+                Không chỉ dựa vào đơn chính - bạn có thể ghép thêm hàng chiều về
+                để tối ưu doanh thu.
               </p>
             </div>
 
@@ -127,7 +132,8 @@ export default function PartnerValues() {
                 Chủ động chọn tuyến phù hợp
               </h3>
               <p className="text-[var(--gray-text)] leading-relaxed">
-                Dễ dàng chọn đơn theo tuyến, thời gian, tải trọng phù hợp với hành trình của bạn.
+                Dễ dàng chọn đơn theo tuyến, thời gian, tải trọng phù hợp với
+                hành trình của bạn.
               </p>
             </div>
 
@@ -136,7 +142,8 @@ export default function PartnerValues() {
                 Có hợp đồng rõ ràng
               </h3>
               <p className="text-[var(--gray-text)] leading-relaxed">
-                Hệ thống tự tạo biên nhận và hợp đồng điện tử cho từng đơn hàng - minh bạch trách nhiệm.
+                Hệ thống tự tạo biên nhận và hợp đồng điện tử cho từng đơn hàng
+                - minh bạch trách nhiệm.
               </p>
             </div>
 
@@ -145,7 +152,9 @@ export default function PartnerValues() {
                 Tiết kiệm nhiên liệu, giảm CO₂
               </h3>
               <p className="text-[var(--gray-text)] leading-relaxed">
-                Ứng dụng tự động tính toán khí thải CO₂, bạn tiết kiệm được sau mỗi chuyến xe. Bạn có thể theo dõi và chia sẻ đóng góp "xanh" của mình.
+                Ứng dụng tự động tính toán khí thải CO₂, bạn tiết kiệm được sau
+                mỗi chuyến xe. Bạn có thể theo dõi và chia sẻ đóng góp "xanh"
+                của mình.
               </p>
             </div>
           </div>
