@@ -18,3 +18,4 @@ export { default as DownloadCTASection } from './download/CTASection';
 export { default as HomeHeroSection } from './home/HomeHeroSection';
 export { default as Statcard } from './home/Statcard';
 export { default as IntroduceSection } from './home/IntroduceSection';
+export { default as PartnerSection } from './home/PartnerSection';
