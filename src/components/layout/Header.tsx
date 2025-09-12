@@ -60,7 +60,7 @@ export default function Header() {
   }, [pathname]);
 
   return (
-    <header className="flex justify-center fixed z-99 w-full pointer-events-none md:top-10 var(--font-roboto)">
+    <header className="flex justify-center fixed z-99 w-full pointer-events-none md:top-10 ">
       <div
         className={`max-w-screen-2xl w-full flex items-center justify-between py-4 px-8 mx-auto pointer-events-auto md:rounded-full ${
           scrolled

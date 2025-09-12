@@ -16,3 +16,5 @@ export { default as DownloadCTASection } from './download/CTASection';
 
 // Home Components
 export { default as HomeHeroSection } from './home/HomeHeroSection';
+export { default as Statcard } from './home/Statcard';
+export { default as IntroduceSection } from './home/IntroduceSection';
