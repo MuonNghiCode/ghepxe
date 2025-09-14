@@ -3,14 +3,13 @@ import Image from "next/image";
 export default function PlatformSection() {
   return (
     <section className="py-16 bg-white">
-      <div className="max-w-7xl mx-auto px-4">
+      <div className="max-w-screen-2xl mx-auto px-4">
         <div className="grid md:grid-cols-5 gap-12 items-start mb-16">
           <div className="md:col-span-2 mb-8 md:mb-0">
             <h2 className="text-4xl md:text-5xl font-bold leading-tight">
               <span className="whitespace-nowrap text-[var(--gray-text)]">
                 Nền tảng{" "}
-                <span className="text-[var(--primary-green)]">Ghép Xe</span>{" "}
-                tối
+                <span className="text-[var(--primary-green)]">Ghép Xe</span> tối
               </span>
               <br />
               <span className="whitespace-nowrap text-[var(--gray-text)]">
@@ -21,9 +20,9 @@ export default function PlatformSection() {
           <div className="md:col-span-3">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <p className="text-lg text-[var(--gray-text)] leading-relaxed line-clamp-6">
-                GhepXe giúp doanh nghiệp đơn giản hóa quy trình vận chuyển
-                bằng cách ứng dụng công nghệ thông minh để ghép đơn, tối ưu lộ
-                trình và rút ngắn thời gian giao nhận
+                GhepXe giúp doanh nghiệp đơn giản hóa quy trình vận chuyển bằng
+                cách ứng dụng công nghệ thông minh để ghép đơn, tối ưu lộ trình
+                và rút ngắn thời gian giao nhận
               </p>
               <p className="text-lg text-[var(--gray-text)] leading-relaxed line-clamp-6">
                 Chúng tôi cam kết mình bạch, hiệu quả và đồng hành cùng doanh
@@ -64,8 +63,8 @@ export default function PlatformSection() {
                 Tổ đội chuyên nghiệp
               </h3>
               <p className="text-[var(--dark-gray)] leading-relaxed">
-                Chúng tôi làm việc với tinh thần tự chủ động, linh hoạt và
-                sáng tạo
+                Chúng tôi làm việc với tinh thần tự chủ động, linh hoạt và sáng
+                tạo
               </p>
             </div>
           </div>
@@ -142,7 +141,7 @@ export default function PlatformSection() {
         </div>
 
         {/* Overlapping Images Section */}
-        <div className="max-w-7xl mx-auto px-4 mb-16">
+        <div className="max-w-screen-2xl mx-auto px-4 mb-16">
           <div className="relative flex justify-center">
             {/* Base Image - Rectangle 65 */}
             <div className="relative">

@@ -23,7 +23,7 @@ export default function Footer() {
   return (
     <footer className="w-full bg-[#EFEFEF] pt-16 pb-8">
       {/* Top Section */}
-      <div className="max-w-7xl mx-auto px-6 mb-16">
+      <div className="max-w-screen-2xl mx-auto px-6 mb-16">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-4 md:mb-0">
             <h3 className="text-4xl font-bold text-[#6B6B6B] mb-2">
@@ -39,7 +39,7 @@ export default function Footer() {
       </div>
 
       {/* Main Footer Content */}
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-screen-2xl mx-auto px-6">
         <div className="mb-12">
           {/* Logo and Links Layout */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
