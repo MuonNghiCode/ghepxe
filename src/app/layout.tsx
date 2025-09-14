@@ -4,7 +4,7 @@ import "./globals.css";
 import "../styles/colors.css";
 import { Footer, Header, ScrollToTop } from "@/components";
 import { LanguageProvider } from "@/context/LanguageContext";
-
+import { SpeedInsights } from "@vercel/speed-insights/next";
 // Roboto (sans-serif)
 const roboto = Roboto({
   variable: "--font-roboto",
@@ -39,6 +39,7 @@ export default function RootLayout({
           <main className="flex-1 w-full flex flex-col relative">
             <Header />
             {children}
+            <SpeedInsights />
           </main>
           <Footer />
         </LanguageProvider>
