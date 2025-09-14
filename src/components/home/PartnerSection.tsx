@@ -159,11 +159,15 @@ export default function PartnerSection() {
             </motion.h2>
 
             <motion.p
-              className="text-[var(--gray-text)] text-lg md:text-xl mb-8 lg:max-w-xl leading-relaxed"
+              className="text-[var(--gray-text)] text-lg md:text-2xl mb-8 lg:max-w-xl leading-relaxed"
               variants={itemVariants}
+              style={{ fontFamily: "var(--font-roboto)" }}
             >
-              Ghepxe mang đến nền tảng vận tải thông minh giúp bạn nhận đơn hàng
-              ổn định mỗi ngày một cách minh bạch, thuận tiện và đáng tin cậy.
+              <span className="font-bold text-[var(--primary-green)]">
+                Ghepxe
+              </span>{" "}
+              mang đến nền tảng vận tải thông minh giúp bạn nhận đơn hàng ổn
+              định mỗi ngày một cách minh bạch, thuận tiện và đáng tin cậy.
             </motion.p>
           </motion.div>
         </div>
