@@ -1,5 +1,5 @@
 "use client";
-import { Globe, X } from "lucide-react";
+import { Globe } from "lucide-react";
 import Link from "next/link";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import {

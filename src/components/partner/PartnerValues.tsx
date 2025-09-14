@@ -8,15 +8,15 @@ export default function PartnerValues() {
           <div className="md:col-span-2 mb-8 md:mb-0">
             <h2 className="text-4xl md:text-5xl font-bold leading-tight">
               <span className="whitespace-nowrap text-[var(--gray-text)]">
-                Gia nhập{" "}
+                Gia nhập
               </span>
               <br />
               <span className="whitespace-nowrap text-[var(--gray-text)]">
-                Cộng Đồng{" "}
+                Cộng Đồng
               </span>
               <br />
               <span className="whitespace-nowrap text-[var(--gray-text)]">
-                Vận Tải{" "}
+                Vận Tải
               </span>
               <br />
               <span className="whitespace-nowrap text-[var(--ghepxe-green)]">
@@ -153,8 +153,8 @@ export default function PartnerValues() {
               </h3>
               <p className="text-[var(--gray-text)] leading-relaxed">
                 Ứng dụng tự động tính toán khí thải CO₂, bạn tiết kiệm được sau
-                mỗi chuyến xe. Bạn có thể theo dõi và chia sẻ đóng góp "xanh"
-                của mình.
+                mỗi chuyến xe. Bạn có thể theo dõi và chia sẻ đóng góp
+                &quot;xanh&quot; của mình.
               </p>
             </div>
           </div>
