@@ -139,19 +139,19 @@ export default function PartnerSection() {
               variants={textVariants}
             >
               <motion.span
-                className="block mb-2 bg-gradient-to-r from-[var(--primary-green)] to-green-600 bg-clip-text text-transparent"
+                className="block mb-2 bg-gradient-to-r from-[var(--primary-green)] to-[var(--secondary-green)] bg-clip-text text-transparent"
                 variants={titleLineVariants}
               >
                 Đồng hành thật
               </motion.span>
               <motion.span
-                className="block mb-2 bg-gradient-to-r from-[var(--primary-green)] to-green-600 bg-clip-text text-transparent"
+                className="block mb-2 bg-gradient-to-r from-[var(--primary-green)] to-[var(--secondary-green)] bg-clip-text text-transparent"
                 variants={titleLineVariants}
               >
                 Đơn hàng thật
               </motion.span>
               <motion.span
-                className="block bg-gradient-to-r from-[var(--primary-green)] to-green-600 bg-clip-text text-transparent"
+                className="block bg-gradient-to-r from-[var(--primary-green)] to-[var(--secondary-green)] bg-clip-text text-transparent"
                 variants={titleLineVariants}
               >
                 Niềm tin thật
@@ -169,16 +169,13 @@ export default function PartnerSection() {
         </div>
 
         {/* Button section với thiết kế cải tiến */}
-        <motion.div
-          className="flex justify-center"
-          variants={buttonVariants}
-          whileHover="hover"
-        >
+        <motion.div className="flex justify-center" variants={buttonVariants}>
           <motion.div
             className="bg-[var(--primary-green)] w-full rounded-3xl flex flex-col sm:flex-row justify-between items-center p-8 shadow-2xl relative overflow-hidden"
             whileHover={{
               boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
               y: -2,
+              scale: 1.02,
             }}
             transition={{ duration: 0.3 }}
           >
@@ -202,7 +199,9 @@ export default function PartnerSection() {
 
             <motion.div
               className="text-white mb-4 sm:mb-0 text-center sm:text-left z-10"
-              variants={itemVariants}
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.6, duration: 0.5 }}
             >
               <h3 className="font-bold text-2xl md:text-3xl mb-2">
                 Bạn có xe?
@@ -219,7 +218,9 @@ export default function PartnerSection() {
                 boxShadow: "0 10px 25px rgba(0, 0, 0, 0.15)",
               }}
               whileTap={{ scale: 0.98 }}
-              variants={itemVariants}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.8, duration: 0.5 }}
             >
               <span className="relative z-10">Trở Thành Đối Tác</span>
               <motion.div

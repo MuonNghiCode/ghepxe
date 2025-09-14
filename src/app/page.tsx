@@ -1,4 +1,5 @@
 import {
+  DownloadSection,
   HomeHeroSection,
   IntroduceSection,
   PartnerSection,
@@ -12,6 +13,7 @@ export default function Home() {
       <Statcard />
       <IntroduceSection />
       <PartnerSection />
+      <DownloadSection />
     </main>
   );
 }

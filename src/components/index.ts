@@ -1,6 +1,6 @@
 export { default as Header } from './layout/Header';
 export { default as Footer } from './layout/Footer';
-
+export { default as ScrollToTop } from './ui/ScrollToTop';
 // Aboutus Components
 export { default as AboutHeroSection } from './about/AboutHeroSection';
 export { default as PlatformSection } from './about/PlatformSection';
@@ -19,3 +19,4 @@ export { default as HomeHeroSection } from './home/HomeHeroSection';
 export { default as Statcard } from './home/Statcard';
 export { default as IntroduceSection } from './home/IntroduceSection';
 export { default as PartnerSection } from './home/PartnerSection';
+export { default as DownloadSection } from './home/DownloadSection';
