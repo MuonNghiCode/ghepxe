@@ -125,7 +125,7 @@ export default function Header() {
                     </Link>
                   </motion.li>
                   <motion.li variants={liVariants}>
-                    <Link href="services" className="relative group">
+                    <Link href="service" className="relative group">
                       <span>
                         {language === "vi"
                           ? "Khách Hàng Cá Nhân"
@@ -224,7 +224,7 @@ export default function Header() {
                 </Link>
               </li>
               <li>
-                <Link href="services" className="relative group">
+                <Link href="service" className="relative group">
                   <span>
                     {language === "vi"
                       ? "Khách Hàng Cá Nhân"
