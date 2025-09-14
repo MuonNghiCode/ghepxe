@@ -1,6 +1,7 @@
 export { default as Header } from './layout/Header';
 export { default as Footer } from './layout/Footer';
 export { default as ScrollToTop } from './ui/ScrollToTop';
+export { default as NoScrollGapFix } from './ui/NoScrollGapFix';
 // Aboutus Components
 export { default as AboutHeroSection } from './about/AboutHeroSection';
 export { default as PlatformSection } from './about/PlatformSection';
