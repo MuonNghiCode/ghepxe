@@ -2,6 +2,7 @@
 import { easeInOut, motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import Particle from "../ui/Particle";
+import Image from "next/image";
 
 export default function IntroduceSection() {
   const ref = useRef(null);
@@ -99,11 +100,15 @@ export default function IntroduceSection() {
       ref={ref}
       className="relative w-full bg-white min-h-screen py-12 sm:py-16 lg:py-20 flex items-center justify-center "
     >
-      <img
-        src="home/Vector.png"
-        alt="Vector"
-        className="absolute z-0 w-full h-full object-cover "
-      />
+      <div className="absolute z-0 w-full h-full">
+        <Image
+          src="/home/Vector.png"
+          alt="Vector"
+          fill
+          className="object-cover"
+        />
+      </div>
+
       <Particle
         particleColor="var(--primary-green)"
         particleCount={2}
