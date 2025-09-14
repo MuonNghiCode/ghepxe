@@ -1,12 +1,14 @@
-import HeroSection from "@/components/partner/HeroSection";
-import PartnerValues from "@/components/partner/PartnerValues";
-import RequirementsSection from "@/components/partner/RequirementsSection";
-import FAQSection from "@/components/partner/FAQSection";
+import {
+  FAQSection,
+  PartnerHeroSection,
+  PartnerValues,
+  RequirementsSection,
+} from "@/components";
 
 export default function Partner() {
   return (
     <div className="min-h-screen">
-      <HeroSection />
+      <PartnerHeroSection />
       <PartnerValues />
       <RequirementsSection />
       <FAQSection />

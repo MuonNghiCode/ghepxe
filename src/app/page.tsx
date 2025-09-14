@@ -8,12 +8,12 @@ import {
 
 export default function Home() {
   return (
-    <section>
+    <div>
       <HomeHeroSection />
       <Statcard />
       <IntroduceSection />
       <PartnerSection />
       <DownloadSection />
-    </section>
+    </div>
   );
 }

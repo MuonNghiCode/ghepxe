@@ -2,6 +2,7 @@ export { default as Header } from './layout/Header';
 export { default as Footer } from './layout/Footer';
 export { default as ScrollToTop } from './ui/ScrollToTop';
 export { default as NoScrollGapFix } from './ui/NoScrollGapFix';
+
 // Aboutus Components
 export { default as AboutHeroSection } from './about/AboutHeroSection';
 export { default as PlatformSection } from './about/PlatformSection';
@@ -21,3 +22,12 @@ export { default as Statcard } from './home/Statcard';
 export { default as IntroduceSection } from './home/IntroduceSection';
 export { default as PartnerSection } from './home/PartnerSection';
 export { default as DownloadSection } from './home/DownloadSection';
+
+// Partners Components
+export { default as PartnerHeroSection } from './partner/PartnerHeroSection';
+export { default as PartnerValues } from './partner/PartnerValues';
+export { default as RequirementsSection } from './partner/RequirementsSection';
+export { default as FAQSection } from './partner/FAQSection';
+
+// Service Components
+export { default as ServiceHeroSection } from './service/ServiceHeroSection';
