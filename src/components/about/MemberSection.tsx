@@ -107,7 +107,7 @@ const members: Member[] = [
 export default function MemberSection() {
   return (
     <section className="py-16 bg-white">
-      <div className="max-w-6xl mx-auto px-6">
+      <div className="max-w-screen-2xl mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-[#00A982] mb-4">Thành Viên</h2>

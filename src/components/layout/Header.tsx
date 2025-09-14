@@ -9,11 +9,6 @@ import {
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
 } from "@/components/ui/dropdown-menu";
-import {
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-} from "@/components/ui/popover";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { DialogTitle } from "@radix-ui/react-dialog";
 import { useState, useEffect } from "react";
@@ -21,6 +16,7 @@ import { motion } from "framer-motion";
 import CountryFlag from "react-country-flag";
 import { useLanguage } from "@/context/LanguageContext";
 import { usePathname } from "next/navigation";
+
 export default function Header() {
   const [open, setOpen] = useState(false);
   const { language, setLanguage } = useLanguage();
@@ -64,13 +60,14 @@ export default function Header() {
   }, [pathname]);
 
   return (
-    <header className="flex justify-center fixed z-20 w-full pointer-events-none md:top-10 var(--font-roboto)">
+    <header className="flex justify-center fixed z-99 w-full pointer-events-none md:top-10 ">
       <div
-        className={`max-w-screen-xl w-full flex items-center justify-between py-4 px-8 mx-auto pointer-events-auto md:rounded-full ${
+        className={`max-w-screen-2xl w-full flex items-center justify-between py-4 px-8 mx-auto pointer-events-auto md:rounded-full ${
           scrolled
             ? "bg-[var(--primary-green)] shadow-xl shadow-[#fcfcfc]/20"
             : "bg-transparent shadow-none"
         }`}
+        style={{ fontFamily: "var(--font-roboto)" }}
       >
         {/* Logo & menu icon */}
         <div className="flex items-center gap-2 min-w-[180px]">
@@ -91,7 +88,7 @@ export default function Header() {
             </SheetTrigger>
             <SheetContent
               side="left"
-              className="bg-[var(--primary-green)] text-white max-w-xs w-full fixed left-0 top-0 h-full shadow-lg z-[100] overflow-auto"
+              className="bg-[var(--primary-green)] text-white max-w-screen-2xl-xs w-full fixed left-0 top-0 h-full shadow-lg z-[100] overflow-auto"
               style={{ transform: "none" }}
             >
               <VisuallyHidden>
@@ -237,7 +234,7 @@ export default function Header() {
                 </Link>
               </li>
               <li>
-                <Link href="#" className="relative group">
+                <Link href="partner" className="relative group">
                   <span>
                     {language === "vi"
                       ? "Trở Thành Đối Tác"
