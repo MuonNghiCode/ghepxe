@@ -1,6 +1,7 @@
 "use client";
 import { easeInOut, motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import Particle from "../ui/Particle";
 
 export default function IntroduceSection() {
   const ref = useRef(null);
@@ -96,8 +97,22 @@ export default function IntroduceSection() {
   return (
     <section
       ref={ref}
-      className="relative w-full bg-white min-h-screen py-12 sm:py-16 lg:py-20 flex items-center justify-center"
+      className="relative w-full bg-white min-h-screen py-12 sm:py-16 lg:py-20 flex items-center justify-center "
     >
+      <img
+        src="home/Vector.png"
+        alt="Vector"
+        className="absolute z-0 w-full h-full object-cover "
+      />
+      <Particle
+        particleColor="var(--primary-green)"
+        particleCount={2}
+        positions={[
+          { bottom: "-8%", right: "-3%", width: "10rem", height: "10rem" },
+          { top: "15%", left: "8%", width: "12rem", height: "12rem" },
+        ]}
+      />
+
       <motion.div
         className="relative w-full max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8"
         variants={containerVariants}
