@@ -2,6 +2,7 @@
 import { easeInOut, easeOut, motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import Particle from "../ui/Particle";
+import Image from "next/image";
 
 export default function PartnerSection() {
   const ref = useRef(null);
@@ -120,10 +121,12 @@ export default function PartnerSection() {
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.3 }}
             >
-              <img
+              <Image
                 src="/home/hand.png"
                 alt="hand"
-                className="w-full lg:w-full h-auto object-cover "
+                width={600}
+                height={400}
+                className="w-full h-auto object-cover"
               />
             </motion.div>
           </motion.div>

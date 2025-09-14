@@ -3,6 +3,7 @@ import { easeOut, motion, useInView } from "framer-motion";
 import Link from "next/link";
 import { useRef } from "react";
 import Particle from "../ui/Particle";
+import Image from "next/image";
 
 export default function DownloadSection() {
   const ref = useRef(null);
@@ -83,11 +84,14 @@ export default function DownloadSection() {
       animate={isInView ? "visible" : "hidden"}
       variants={containerVariants}
     >
-      <img
-        src="home/Vector1.png"
-        alt="Vector"
-        className="absolute z-0 top-0 w-full h-full object-cover"
-      />
+      <div className="absolute z-0 top-0 w-full h-full">
+        <Image
+          src="/home/Vector1.png"
+          alt="Vector"
+          fill
+          className="object-cover"
+        />
+      </div>
 
       {/* Particle Effects */}
       <Particle
@@ -99,7 +103,6 @@ export default function DownloadSection() {
           { top: "60%", right: "15%", width: "5rem", height: "5rem" },
         ]}
       />
-
       {/* Content */}
       <div className="relative z-10 flex flex-col md:flex-row items-center justify-center gap-12 lg:gap-20 w-full max-w-screen-2xl mx-auto px-4">
         {/* Left text */}
