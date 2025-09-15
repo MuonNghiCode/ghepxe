@@ -1,16 +1,16 @@
 import Image from "next/image";
 
-export default function HeroSection() {
+export default function PartnerHeroSection() {
   return (
     <section className="relative min-h-screen flex flex-col justify-between bg-white before:content-[''] before:absolute before:inset-0 before:bg-[url('/aboutus/Vector.svg')] before:bg-cover before:bg-top before:z-0">
       {/* Hero Content */}
       <div className="relative z-10 text-center text-white px-4 max-w-screen-2xl mx-auto pt-40 md:pt-48">
         <h1 className="text-4xl md:text-6xl font-bold mb-6">
-          Cộng Đồng Vận Tải GhepXe
+          Dịch vụ của GhepXe
         </h1>
         <p className="text-lg md:text-xl leading-relaxed opacity-90">
-          Làm nên thành công của chúng tôi không thể thiếu những đóng góp của
-          bạn.
+          GhepXe cho phép bạn đặt xe trong tích tắc, mọi lúc bạn cần! Tải ứng
+          dụng để trải nghiệm các dịch vụ của be
         </p>
       </div>
 
