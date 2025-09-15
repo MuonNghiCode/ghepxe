@@ -14,7 +14,8 @@ import { IoSend } from "react-icons/io5";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
-
+import Link from "next/link";
+const MotionLink = motion(Link);
 export default function Footer() {
   const [email, setEmail] = useState("");
   const { language } = useLanguage();
@@ -24,6 +25,7 @@ export default function Footer() {
     vi: {
       connect: "Kết nối với chúng tôi",
       cta: "Trở thành đối tác của GhepXe để có thêm nguồn thu nhập ổn định",
+      cta2: "Nền tảng ghép xe thông minh giúp vận chuyển nhanh hơn, tiết kiệm hơn và minh bạch hơn.",
       contactBtn: "Liên hệ với GhepXe",
       company: "Công Ty",
       companyLinks: ["Về chúng tôi", "Chính sách", "Hợp tác", "Tuyển dụng"],
@@ -47,6 +49,7 @@ export default function Footer() {
     en: {
       connect: "Connect with us",
       cta: "Become a GhepXe partner for stable extra income",
+      cta2: "The smart vehicle matching platform helps transport faster, cheaper, and more transparently..",
       contactBtn: "Contact GhepXe",
       company: "Company",
       companyLinks: ["About us", "Policy", "Partnership", "Careers"],
@@ -160,7 +163,8 @@ export default function Footer() {
               </motion.p>
             </div>
 
-            <motion.button
+            <MotionLink
+              href="contact"
               className="bg-gradient-to-r from-[var(--primary-green)] to-[var(--secondary-green)] text-white px-8 py-4 rounded-full text-lg font-semibold hover:shadow-xl transition-all duration-300 flex items-center gap-3 group"
               variants={itemVariants}
               whileHover={{ scale: 1.05 }}
@@ -173,7 +177,7 @@ export default function Footer() {
               >
                 →
               </motion.span>
-            </motion.button>
+            </MotionLink>
           </motion.div>
         </div>
       </motion.div>
@@ -200,10 +204,8 @@ export default function Footer() {
               </motion.h2>
 
               <p className="text-gray-600 text-lg leading-relaxed mb-8">
-                Nền tảng ghép xe thông minh giúp vận chuyển nhanh hơn, tiết kiệm
-                hơn và minh bạch hơn.
+                {t.cta2}
               </p>
-
               {/* Social Media */}
               <div className="flex gap-4">
                 {[
