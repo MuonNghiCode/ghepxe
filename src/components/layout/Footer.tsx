@@ -368,7 +368,7 @@ export default function Footer() {
             </div>
 
             <div className="flex flex-wrap gap-6 justify-center">
-              {t.policy.map((item: string, index: number) => (
+              {t.policy.map((item: string) => (
                 <motion.a
                   key={item}
                   href="#"

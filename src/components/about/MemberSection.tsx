@@ -196,7 +196,7 @@ export default function MemberSection() {
           viewport={{ once: true }}
           variants={containerVariants}
         >
-          {members.map((member, index) => (
+          {members.map((member) => (
             <motion.div
               key={member.id}
               className="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500"
@@ -215,44 +215,42 @@ export default function MemberSection() {
 
                 {/* Right Overlay - Social Links */}
                 <div className="absolute right-0 top-0 h-full w-16 bg-[#00a982]/30 backdrop-blur-md flex flex-col justify-center items-center gap-3 opacity-0 group-hover:opacity-100 transform translate-x-full group-hover:translate-x-0 transition-all duration-300 ease-out shadow-lg z-20 pointer-events-none group-hover:pointer-events-auto">
-                  {Object.entries(member.socialLinks).map(
-                    ([platform, url], socialIndex) => {
-                      if (!url) return null;
-                      const IconComponent = getSocialIcon(platform);
-                      const brandColor = getSocialColor(platform);
+                  {Object.entries(member.socialLinks).map(([platform, url]) => {
+                    if (!url) return null;
+                    const IconComponent = getSocialIcon(platform);
+                    const brandColor = getSocialColor(platform);
 
-                      return (
-                        <a
-                          key={platform}
-                          href={url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="w-10 h-10 bg-white/20 hover:bg-white rounded-full flex items-center justify-center text-white hover:text-gray-800 transition-all duration-300 shadow-md border border-white/30 hover:border-white hover:shadow-lg hover:scale-110 hover:-translate-y-1 relative z-30"
-                          style={
-                            {
-                              "--brand-color": brandColor,
-                            } as React.CSSProperties
-                          }
-                          onMouseEnter={(e) => {
-                            e.currentTarget.style.backgroundColor = brandColor;
-                            e.currentTarget.style.color = "white";
-                            e.currentTarget.style.borderColor = brandColor;
-                          }}
-                          onMouseLeave={(e) => {
-                            e.currentTarget.style.backgroundColor = "";
-                            e.currentTarget.style.color = "";
-                            e.currentTarget.style.borderColor = "";
-                          }}
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            window.open(url, "_blank");
-                          }}
-                        >
-                          <IconComponent className="text-lg transition-all duration-300" />
-                        </a>
-                      );
-                    }
-                  )}
+                    return (
+                      <a
+                        key={platform}
+                        href={url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-10 h-10 bg-white/20 hover:bg-white rounded-full flex items-center justify-center text-white hover:text-gray-800 transition-all duration-300 shadow-md border border-white/30 hover:border-white hover:shadow-lg hover:scale-110 hover:-translate-y-1 relative z-30"
+                        style={
+                          {
+                            "--brand-color": brandColor,
+                          } as React.CSSProperties
+                        }
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.backgroundColor = brandColor;
+                          e.currentTarget.style.color = "white";
+                          e.currentTarget.style.borderColor = brandColor;
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.backgroundColor = "";
+                          e.currentTarget.style.color = "";
+                          e.currentTarget.style.borderColor = "";
+                        }}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          window.open(url, "_blank");
+                        }}
+                      >
+                        <IconComponent className="text-lg transition-all duration-300" />
+                      </a>
+                    );
+                  })}
                 </div>
 
                 {/* Bottom Overlay - Member Info */}
