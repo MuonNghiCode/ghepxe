@@ -79,7 +79,7 @@ export default function ServiceValues() {
   };
 
   return (
-    <section className="py-20 bg-gradient-to-b from-white to-gray-50">
+    <section className="py-20 bg-[var(--white)]">
       <div className="max-w-screen-2xl mx-auto px-6">
         <motion.div
           className="grid lg:grid-cols-5 gap-12 lg:gap-16 items-start"
