@@ -163,7 +163,7 @@ export default function MemberSection() {
   };
 
   return (
-    <section className="py-20 bg-gradient-to-b from-gray-50 to-white">
+    <section className="py-20 bg-white">
       <div className="max-w-screen-2xl mx-auto px-6">
         {/* Header */}
         <motion.div
@@ -213,8 +213,8 @@ export default function MemberSection() {
                   className="object-cover group-hover:scale-110 transition-transform duration-500"
                 />
 
-                {/* Right Overlay - Social Links */}
-                <div className="absolute right-0 top-0 h-full w-16 bg-[#00a982]/30 backdrop-blur-md flex flex-col justify-center items-center gap-3 opacity-0 group-hover:opacity-100 transform translate-x-full group-hover:translate-x-0 transition-all duration-300 ease-out shadow-lg z-20 pointer-events-none group-hover:pointer-events-auto">
+                {/* Right Overlay - Social Links (Hidden on Mobile) */}
+                <div className="hidden lg:flex absolute right-0 top-0 h-full w-16 bg-[#00a982]/20 backdrop-blur-md flex-col justify-center items-center gap-3 opacity-0 group-hover:opacity-100 transform translate-x-full group-hover:translate-x-0 transition-all duration-300 ease-out shadow-lg z-20 pointer-events-none group-hover:pointer-events-auto">
                   {Object.entries(member.socialLinks).map(([platform, url]) => {
                     if (!url) return null;
                     const IconComponent = getSocialIcon(platform);
@@ -253,8 +253,8 @@ export default function MemberSection() {
                   })}
                 </div>
 
-                {/* Bottom Overlay - Member Info */}
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/95 via-black/70 to-transparent p-6 text-white opacity-0 group-hover:opacity-100 transform translate-y-full group-hover:translate-y-0 transition-all duration-300 ease-out z-10">
+                {/* Bottom Overlay - Member Info (Hidden on Mobile) */}
+                <div className="hidden lg:block absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/95 via-black/70 to-transparent p-6 text-white opacity-0 group-hover:opacity-100 transform translate-y-full group-hover:translate-y-0 transition-all duration-300 ease-out z-10">
                   <h3
                     className="text-xl font-bold mb-2"
                     style={{ fontFamily: "var(--font-roboto)" }}
@@ -269,17 +269,66 @@ export default function MemberSection() {
                   <div className="h-0.5 bg-gradient-to-r from-[var(--primary-green)] to-green-400 rounded-full w-12 group-hover:w-24 transition-all duration-500 delay-200" />
                 </div>
 
-                {/* Subtle Hover Glow */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[var(--primary-green)]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                {/* Subtle Hover Glow (Desktop Only) */}
+                <div className="hidden lg:block absolute inset-0 bg-gradient-to-t from-[var(--primary-green)]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
 
-              {/* Hover Indicator */}
-              <div className="absolute top-4 right-4 w-8 h-8 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-lg z-5">
+              {/* Mobile Info Card (Always Visible on Mobile) */}
+              <div className="lg:hidden bg-white p-4">
+                <h3
+                  className="text-lg font-bold mb-1 text-gray-800"
+                  style={{ fontFamily: "var(--font-roboto)" }}
+                >
+                  {member.name}
+                </h3>
+                <p className="text-gray-600 text-sm mb-3">{member.position}</p>
+
+                {/* Mobile Social Links */}
+                <div className="flex gap-3 justify-center">
+                  {Object.entries(member.socialLinks).map(([platform, url]) => {
+                    if (!url) return null;
+                    const IconComponent = getSocialIcon(platform);
+                    const brandColor = getSocialColor(platform);
+
+                    return (
+                      <a
+                        key={platform}
+                        href={url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 transition-all duration-300 shadow-sm border border-gray-200 hover:shadow-md active:scale-95"
+                        style={
+                          {
+                            "--brand-color": brandColor,
+                          } as React.CSSProperties
+                        }
+                        onTouchStart={(e) => {
+                          e.currentTarget.style.backgroundColor = brandColor;
+                          e.currentTarget.style.color = "white";
+                          e.currentTarget.style.borderColor = brandColor;
+                        }}
+                        onTouchEnd={(e) => {
+                          setTimeout(() => {
+                            e.currentTarget.style.backgroundColor = "";
+                            e.currentTarget.style.color = "";
+                            e.currentTarget.style.borderColor = "";
+                          }, 150);
+                        }}
+                      >
+                        <IconComponent className="text-sm" />
+                      </a>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Hover Indicator (Desktop Only) */}
+              <div className="hidden lg:block absolute top-4 right-4 w-8 h-8 bg-white/90 backdrop-blur-sm rounded-full md:flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-lg z-5">
                 <div className="w-2 h-2 bg-[var(--primary-green)] rounded-full animate-pulse" />
               </div>
 
-              {/* Interactive Ripple Effect */}
-              <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+              {/* Interactive Ripple Effect (Desktop Only) */}
+              <div className="hidden lg:block absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-transparent via-white/5 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out" />
               </div>
             </motion.div>
