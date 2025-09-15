@@ -18,7 +18,7 @@ export default function HeroSection() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 text-left text-white px-4 md:px-8 lg:px-16 max-w-screen-2xl-7xl mx-auto w-full">
+      <div className="relative z-10 text-left text-white px-4 md:px-8 lg:px-16 max-w-screen-2xl mx-auto w-full">
         <h1 className="text-6xl md:text-7xl lg:text-8xl xl:text-9xl mb-4 drop-shadow-2xl leading-tight font-bold italic">
           <span style={{ color: "var(--primary-green)" }}>GhepXe</span>
         </h1>
