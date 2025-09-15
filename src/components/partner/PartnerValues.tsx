@@ -1,177 +1,281 @@
+"use client";
+
 import Image from "next/image";
+import { easeOut, motion } from "framer-motion";
+
+interface ValueCard {
+  icon: string;
+  title: string;
+  description: string;
+  alt: string;
+}
+
+interface BenefitItem {
+  title: string;
+  description: string;
+}
+
+const valueCards: ValueCard[] = [
+  {
+    icon: "/aboutus/icon/toiuu.svg",
+    title: "Tối Ưu",
+    description:
+      "Tối ưu xe chiều về rỗng, ghép đơn dễ dàng, giảm lãng phí nhiên liệu.",
+    alt: "Tối Ưu",
+  },
+  {
+    icon: "/aboutus/icon/tincay.svg",
+    title: "Tin Cậy",
+    description:
+      "Đơn hàng minh bạch, có hợp đồng điện tử – dễ kiểm soát, hạn chế rủi ro.",
+    alt: "Tin Cậy",
+  },
+  {
+    icon: "/aboutus/icon/benvung.svg",
+    title: "Bền Vững",
+    description:
+      "Tối ưu xe trống chiều về, giảm thiểu khí thải CO₂ cho hành tinh xanh hơn.",
+    alt: "Bền Vững",
+  },
+  {
+    icon: "/aboutus/icon/linhhoat.svg",
+    title: "Linh Hoạt",
+    description:
+      "Tự tạo chuyến – tự chọn đơn – chủ động hành trình và thu nhập.",
+    alt: "Linh Hoạt",
+  },
+];
+
+const benefits: BenefitItem[] = [
+  {
+    title: "Tăng thu nhập từ mỗi chuyến",
+    description:
+      "Không chỉ dựa vào đơn chính - bạn có thể ghép thêm hàng chiều về để tối ưu doanh thu.",
+  },
+  {
+    title: "Chủ động chọn tuyến phù hợp",
+    description:
+      "Dễ dàng chọn đơn theo tuyến, thời gian, tải trọng phù hợp với hành trình của bạn.",
+  },
+  {
+    title: "Có hợp đồng rõ ràng",
+    description:
+      "Hệ thống tự tạo biên nhận và hợp đồng điện tử cho từng đơn hàng - minh bạch trách nhiệm.",
+  },
+  {
+    title: "Tiết kiệm nhiên liệu, giảm CO₂",
+    description:
+      'Ứng dụng tự động tính toán khí thải CO₂, bạn tiết kiệm được sau mỗi chuyến xe. Bạn có thể theo dõi và chia sẻ đóng góp "xanh" của mình.',
+  },
+];
 
 export default function PartnerValues() {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        duration: 0.6,
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: easeOut,
+      },
+    },
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 20, scale: 0.95 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.5,
+        ease: easeOut,
+      },
+    },
+  };
+
   return (
-    <section className="py-16 bg-white">
-      <div className="max-w-screen-2xl mx-auto px-4">
-        <div className="grid md:grid-cols-5 gap-12 items-start mb-16">
-          <div className="md:col-span-2 mb-8 md:mb-0">
-            <h2 className="text-4xl md:text-5xl font-bold leading-tight">
-              <span className="whitespace-nowrap text-[var(--gray-text)]">
-                Gia nhập
-              </span>
+    <section className="py-20 bg-white">
+      <div className="max-w-screen-2xl mx-auto px-6">
+        {/* Values Section */}
+        <motion.div
+          className="grid lg:grid-cols-5 gap-12 lg:gap-16 items-start mb-20"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={containerVariants}
+        >
+          {/* Title Section */}
+          <motion.div
+            className="lg:col-span-2 mb-12 lg:mb-0"
+            variants={itemVariants}
+          >
+            <motion.h2
+              className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-gray-800"
+              style={{ fontFamily: "var(--font-roboto)" }}
+              variants={itemVariants}
+            >
+              <span className="whitespace-nowrap">Gia nhập</span>
               <br />
-              <span className="whitespace-nowrap text-[var(--gray-text)]">
-                Cộng Đồng
-              </span>
+              <span className="whitespace-nowrap">Cộng Đồng</span>
               <br />
-              <span className="whitespace-nowrap text-[var(--gray-text)]">
-                Vận Tải
-              </span>
+              <span className="whitespace-nowrap">Vận Tải</span>
               <br />
-              <span className="whitespace-nowrap text-[var(--ghepxe-green)]">
+              <motion.span
+                className="whitespace-nowrap text-[var(--primary-green)]"
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.2 }}
+              >
                 GhepXe
-              </span>
-            </h2>
-          </div>
-          <div className="md:col-span-3">
-            {/* Partner Values Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="bg-[var(--card-bg)] rounded-2xl p-6 flex items-start gap-4">
-                <div className="w-14 h-14 flex-shrink-0 flex items-center justify-center">
-                  <Image
-                    src="/aboutus/icon/toiuu.svg"
-                    alt="Tối Ưu"
-                    width={56}
-                    height={56}
-                    className="w-14 h-14"
-                  />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-lg font-semibold text-[var(--gray-text)] mb-2">
-                    Tối Ưu
-                  </h3>
-                  <p className="text-sm text-[var(--gray-text)] leading-relaxed">
-                    Tối ưu xe chiều về rỗng, ghép đơn dễ dàng, giảm lãng phí
-                    nhiên liệu.
-                  </p>
-                </div>
-              </div>
+              </motion.span>
+            </motion.h2>
+          </motion.div>
 
-              <div className="bg-[var(--card-bg)] rounded-2xl p-6 flex items-start gap-4">
-                <div className="w-14 h-14 flex-shrink-0 flex items-center justify-center">
-                  <Image
-                    src="/aboutus/icon/tincay.svg"
-                    alt="Tin Cậy"
-                    width={56}
-                    height={56}
-                    className="w-14 h-14"
-                  />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-lg font-semibold text-[var(--gray-text)] mb-2">
-                    Tin Cậy
-                  </h3>
-                  <p className="text-sm text-[var(--gray-text)] leading-relaxed">
-                    Đơn hàng minh bạch, có hợp đồng điện tử – dễ kiểm soát, hạn
-                    chế rủi ro.
-                  </p>
-                </div>
-              </div>
+          {/* Values Cards */}
+          <motion.div className="lg:col-span-3" variants={itemVariants}>
+            <motion.div
+              className="grid grid-cols-1 md:grid-cols-2 gap-6"
+              variants={containerVariants}
+            >
+              {valueCards.map((card, index) => (
+                <motion.div
+                  key={card.title}
+                  className="bg-gray-50 hover:bg-white rounded-2xl p-6 flex items-start gap-4 shadow-sm hover:shadow-lg border border-gray-100 hover:border-[var(--primary-green)]/20 transition-all duration-300"
+                  variants={cardVariants}
+                  whileHover={{
+                    y: -4,
+                    scale: 1.02,
+                    transition: { duration: 0.3 },
+                  }}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                >
+                  {/* Icon */}
+                  <motion.div
+                    className="w-14 h-14 flex-shrink-0 flex items-center justify-center bg-[var(--primary-green)]/10 rounded-xl"
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <Image
+                      src={card.icon}
+                      alt={card.alt}
+                      width={32}
+                      height={32}
+                      className="w-8 h-8"
+                    />
+                  </motion.div>
 
-              <div className="bg-[var(--card-bg)] rounded-2xl p-6 flex items-start gap-4">
-                <div className="w-14 h-14 flex-shrink-0 flex items-center justify-center">
-                  <Image
-                    src="/aboutus/icon/benvung.svg"
-                    alt="Bền Vững"
-                    width={56}
-                    height={56}
-                    className="w-14 h-14"
-                  />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-lg font-semibold text-[var(--gray-text)] mb-2">
-                    Bền Vững
-                  </h3>
-                  <p className="text-sm text-[var(--gray-text)] leading-relaxed">
-                    Tối ưu xe trống chiều về, giảm thiểu khí thải CO₂ cho hành
-                    tinh xanh hơn.
-                  </p>
-                </div>
-              </div>
+                  {/* Content */}
+                  <div className="flex-1">
+                    <h3
+                      className="text-lg font-semibold text-gray-800 mb-2"
+                      style={{ fontFamily: "var(--font-roboto)" }}
+                    >
+                      {card.title}
+                    </h3>
+                    <p
+                      className="text-sm text-gray-600 leading-relaxed"
+                      style={{ fontFamily: "var(--font-roboto)" }}
+                    >
+                      {card.description}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+          </motion.div>
+        </motion.div>
 
-              <div className="bg-[var(--card-bg)] rounded-2xl p-6 flex items-start gap-4">
-                <div className="w-14 h-14 flex-shrink-0 flex items-center justify-center">
-                  <Image
-                    src="/aboutus/icon/linhhoat.svg"
-                    alt="Linh Hoạt"
-                    width={56}
-                    height={56}
-                    className="w-14 h-14"
-                  />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-lg font-semibold text-[var(--gray-text)] mb-2">
-                    Linh Hoạt
-                  </h3>
-                  <p className="text-sm text-[var(--gray-text)] leading-relaxed">
-                    Tự tạo chuyến – tự chọn đơn – chủ động hành trình và thu
-                    nhập.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        {/* Why Join Section */}
+        <motion.div
+          className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={containerVariants}
+        >
+          {/* Benefits List */}
+          <motion.div className="space-y-8" variants={itemVariants}>
+            {benefits.map((benefit, index) => (
+              <motion.div
+                key={benefit.title}
+                className="pb-6 border-b border-gray-200 last:border-b-0 last:pb-0"
+                variants={itemVariants}
+                whileHover={{ x: 4 }}
+                transition={{ duration: 0.2 }}
+              >
+                <motion.h3
+                  className="text-xl font-semibold text-gray-800 mb-4"
+                  style={{ fontFamily: "var(--font-roboto)" }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: index * 0.1 }}
+                >
+                  {benefit.title}
+                </motion.h3>
+                <motion.p
+                  className="text-gray-600 leading-relaxed"
+                  style={{ fontFamily: "var(--font-roboto)" }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: index * 0.1 + 0.1 }}
+                >
+                  {benefit.description}
+                </motion.p>
+              </motion.div>
+            ))}
+          </motion.div>
 
-        {/* Why Join GhepXe Section */}
-        <div className="grid md:grid-cols-2 gap-12 items-start mt-40">
-          <div className="space-y-8">
-            <div className="pb-6 border-b border-gray-200">
-              <h3 className="text-xl font-semibold text-[var(--gray-text)] mb-4">
-                Tăng thu nhập từ mỗi chuyến
-              </h3>
-              <p className="text-[var(--gray-text)] leading-relaxed">
-                Không chỉ dựa vào đơn chính - bạn có thể ghép thêm hàng chiều về
-                để tối ưu doanh thu.
-              </p>
-            </div>
-
-            <div className="pb-6 border-b border-gray-200">
-              <h3 className="text-xl font-semibold text-[var(--gray-text)] mb-4">
-                Chủ động chọn tuyến phù hợp
-              </h3>
-              <p className="text-[var(--gray-text)] leading-relaxed">
-                Dễ dàng chọn đơn theo tuyến, thời gian, tải trọng phù hợp với
-                hành trình của bạn.
-              </p>
-            </div>
-
-            <div className="pb-6 border-b border-gray-200">
-              <h3 className="text-xl font-semibold text-[var(--gray-text)] mb-4">
-                Có hợp đồng rõ ràng
-              </h3>
-              <p className="text-[var(--gray-text)] leading-relaxed">
-                Hệ thống tự tạo biên nhận và hợp đồng điện tử cho từng đơn hàng
-                - minh bạch trách nhiệm.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="text-xl font-semibold text-[var(--gray-text)] mb-4">
-                Tiết kiệm nhiên liệu, giảm CO₂
-              </h3>
-              <p className="text-[var(--gray-text)] leading-relaxed">
-                Ứng dụng tự động tính toán khí thải CO₂, bạn tiết kiệm được sau
-                mỗi chuyến xe. Bạn có thể theo dõi và chia sẻ đóng góp
-                &quot;xanh&quot; của mình.
-              </p>
-            </div>
-          </div>
-
-          <div className="flex items-center justify-center">
+          {/* Title Section */}
+          <motion.div
+            className="flex items-center justify-center lg:justify-start"
+            variants={itemVariants}
+          >
             <div className="text-left">
-              <h2 className="text-4xl md:text-5xl font-bold leading-tight mb-4">
-                <span className="text-[var(--gray-text)]">Tại sao nên</span>
+              <motion.h2
+                className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight"
+                style={{ fontFamily: "var(--font-roboto)" }}
+                variants={itemVariants}
+              >
+                <span className="text-gray-800">Tại sao nên</span>
                 <br />
-                <span className="text-[var(--gray-text)]">tham gia</span>
+                <span className="text-gray-800">tham gia</span>
                 <br />
-                <span className="text-[var(--ghepxe-green)]">GhepXe</span>
-                <span className="text-[var(--gray-text)]">?</span>
-              </h2>
+                <motion.span
+                  className="text-[var(--primary-green)]"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  GhepXe
+                </motion.span>
+                <span className="text-gray-800">?</span>
+              </motion.h2>
+
+              <motion.p
+                className="mt-6 text-lg text-gray-600 leading-relaxed max-w-md"
+                style={{ fontFamily: "var(--font-roboto)" }}
+                variants={itemVariants}
+              >
+                Khám phá những lợi ích tuyệt vời khi trở thành đối tác của
+                GhepXe
+              </motion.p>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );
