@@ -31,3 +31,4 @@ export { default as FAQSection } from './partner/FAQSection';
 
 // Service Components
 export { default as ServiceHeroSection } from './service/ServiceHeroSection';
+export { default as ServiceValues } from './service/ServiceValues';
