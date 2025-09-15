@@ -1,71 +1,227 @@
-export default function FAQSection() {
-  return (
-    <section className="py-16 bg-white">
-      <div className="max-w-screen-2xl mx-auto px-4">
-        <div className="grid md:grid-cols-2 gap-12 items-start">
-          {/* Left Title */}
-          <div>
-            <h2 className="text-4xl md:text-5xl font-bold text-[var(--gray-text)] leading-tight">
-              Câu hỏi
-              <br />
-              thường gặp
-            </h2>
+"use client";
 
-            <button className="mt-8 bg-[var(--ghepxe-green)] text-white px-6 py-3 rounded-full font-semibold hover:bg-opacity-90 transition-colors flex items-center gap-2">
-              Xem thêm
-              <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center">
-                <svg
-                  width="12"
-                  height="12"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
+import { motion, AnimatePresence, easeOut } from "framer-motion";
+import { useState } from "react";
+
+interface FAQ {
+  id: number;
+  question: string;
+  answer: string;
+}
+
+const faqs: FAQ[] = [
+  {
+    id: 1,
+    question: "Tôi có thể từ chối đơn không phù hợp?",
+    answer:
+      "Được, bạn luôn có quyền từ chối đơn hàng không phù hợp lịch trình, tuyến hoặc loại hàng.",
+  },
+  {
+    id: 2,
+    question: "Tôi có được đánh giá khách hàng không?",
+    answer:
+      "Có, sau mỗi chuyến xong, bạn có thể để đánh giá khách hàng - giúp nâng cao chất lượng hệ thống.",
+  },
+  {
+    id: 3,
+    question: "App có hỗ trợ tối ưu đơn hàng không?",
+    answer:
+      "Có, bạn có thể gộp nhiều đơn, chia sẻ hành trình hoặc ghép lẻ các đơn để tăng thu nhập.",
+  },
+];
+
+export default function FAQSection() {
+  const [expandedId, setExpandedId] = useState<number | null>(1);
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        duration: 0.6,
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: easeOut,
+      },
+    },
+  };
+
+  const faqVariants = {
+    hidden: { opacity: 0, x: 20 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 0.5,
+        ease: easeOut,
+      },
+    },
+  };
+
+  return (
+    <section className="py-20 bg-gradient-to-b from-white to-gray-50">
+      <div className="max-w-screen-2xl mx-auto px-6">
+        <motion.div
+          className="grid md:grid-cols-2 gap-16 items-start"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={containerVariants}
+        >
+          {/* Left Title */}
+          <motion.div variants={itemVariants}>
+            <motion.h2
+              className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 leading-tight mb-8"
+              style={{ fontFamily: "var(--font-roboto)" }}
+              variants={itemVariants}
+            >
+              <span className="text-gray-800">Câu hỏi</span>
+              <br />
+              <motion.span
+                className="text-[var(--primary-green)] relative"
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.2 }}
+              >
+                thường gặp
+                <motion.div
+                  className="absolute -bottom-2 left-0 h-1 bg-[var(--primary-green)]/30 rounded-full"
+                  initial={{ width: 0 }}
+                  animate={{ width: "100%" }}
+                  transition={{ delay: 0.8, duration: 0.8 }}
+                />
+              </motion.span>
+            </motion.h2>
+
+            <motion.p
+              className="text-lg text-gray-600 leading-relaxed mb-10"
+              style={{ fontFamily: "var(--font-roboto)" }}
+              variants={itemVariants}
+            >
+              Những câu hỏi phổ biến nhất từ đối tác tài xế GhepXe
+            </motion.p>
+
+            <motion.div
+              variants={itemVariants}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <motion.button
+                className="bg-[var(--primary-green)] text-white px-8 py-4 rounded-full font-semibold hover:bg-[var(--primary-green)]/90 transition-all duration-300 flex items-center gap-3 shadow-lg hover:shadow-xl group"
+                style={{ fontFamily: "var(--font-roboto)" }}
+                whileHover={{
+                  boxShadow: "0 10px 30px rgba(0, 169, 130, 0.3)",
+                }}
+                transition={{ duration: 0.3 }}
+              >
+                <span className="text-lg font-semibold">Xem thêm</span>
+                <motion.div
+                  className="w-8 h-8 bg-white rounded-full flex items-center justify-center group-hover:rotate-90 transition-transform duration-300"
+                  whileHover={{ rotate: 90 }}
+                  transition={{ duration: 0.3 }}
                 >
-                  <path
-                    d="M9 18L15 12L9 6"
-                    stroke="#00A982"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </div>
-            </button>
-          </div>
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M9 18L15 12L9 6"
+                      stroke="var(--primary-green)"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </motion.div>
+              </motion.button>
+            </motion.div>
+          </motion.div>
 
           {/* Right FAQs */}
-          <div className="space-y-8">
-            <div className="pb-6 border-b border-gray-200">
-              <h3 className="text-xl font-semibold text-[var(--gray-text)] mb-3">
-                Tôi có thể từ chối đơn không phù hợp?
-              </h3>
-              <p className="text-[var(--gray-text)] leading-relaxed">
-                Được, bạn luôn có quyền từ chối đơn hàng không phù hợp lịp
-                trình, tuyến hoặc loại hàng.
-              </p>
-            </div>
+          <motion.div className="space-y-6" variants={containerVariants}>
+            {faqs.map((faq, index) => (
+              <motion.div
+                key={faq.id}
+                className="bg-white rounded-2xl border border-gray-100 hover:border-[var(--primary-green)]/20 transition-all duration-300 overflow-hidden shadow-sm hover:shadow-lg"
+                variants={faqVariants}
+                whileHover={{ y: -2 }}
+                transition={{ delay: index * 0.1 }}
+              >
+                <motion.button
+                  className="w-full p-6 text-left flex items-center justify-between group"
+                  onClick={() =>
+                    setExpandedId(expandedId === faq.id ? null : faq.id)
+                  }
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <motion.h3
+                    className="text-xl font-semibold text-gray-800 pr-4 group-hover:text-[var(--primary-green)] transition-colors duration-200"
+                    style={{ fontFamily: "var(--font-roboto)" }}
+                  >
+                    {faq.question}
+                  </motion.h3>
+                  <motion.div
+                    className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center flex-shrink-0 group-hover:bg-[var(--primary-green)]/10 transition-colors duration-200"
+                    animate={{
+                      rotate: expandedId === faq.id ? 45 : 0,
+                    }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      className="text-gray-600 group-hover:text-[var(--primary-green)] transition-colors duration-200"
+                    >
+                      <path
+                        d="M12 5V19M5 12H19"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </motion.div>
+                </motion.button>
 
-            <div className="pb-6 border-b border-gray-200">
-              <h3 className="text-xl font-semibold text-[var(--gray-text)] mb-3">
-                Tôi có được đánh giá khách hàng không?
-              </h3>
-              <p className="text-[var(--gray-text)] leading-relaxed">
-                Có, bạn một chuyến xong, bạn có thể để đánh giá khách hàng giri
-                – giúp nâng cao chất lượng hệ thống.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="text-xl font-semibold text-[var(--gray-text)] mb-3">
-                App có hỗ trợ tối ưu đơn xây ra có?
-              </h3>
-              <p className="text-[var(--gray-text)] leading-relaxed">
-                Có, bạn có thể gộp hiện một, chai hỗ trợ hoạc ghép lông các đơn
-                để tăng ưu thận.
-              </p>
-            </div>
-          </div>
-        </div>
+                <AnimatePresence>
+                  {expandedId === faq.id && (
+                    <motion.div
+                      className="px-6 pb-6"
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: "easeOut" }}
+                    >
+                      <motion.p
+                        className="text-gray-600 leading-relaxed border-t border-gray-100 pt-4"
+                        style={{ fontFamily: "var(--font-roboto)" }}
+                        initial={{ y: 10, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        transition={{ delay: 0.1, duration: 0.2 }}
+                      >
+                        {faq.answer}
+                      </motion.p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            ))}
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );
