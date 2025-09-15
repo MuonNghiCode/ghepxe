@@ -214,7 +214,7 @@ export default function MemberSection() {
                 />
 
                 {/* Right Overlay - Social Links */}
-                <div className="absolute right-0 top-0 h-full w-16 bg-[var(--primary-green)]   backdrop-blur-md flex flex-col justify-center items-center gap-3 opacity-0 group-hover:opacity-100 transform translate-x-full group-hover:translate-x-0 transition-all duration-300 ease-out shadow-lg z-20 pointer-events-none group-hover:pointer-events-auto">
+                <div className="absolute right-0 top-0 h-full w-16 bg-[#00a982]/30 backdrop-blur-md flex flex-col justify-center items-center gap-3 opacity-0 group-hover:opacity-100 transform translate-x-full group-hover:translate-x-0 transition-all duration-300 ease-out shadow-lg z-20 pointer-events-none group-hover:pointer-events-auto">
                   {Object.entries(member.socialLinks).map(
                     ([platform, url], socialIndex) => {
                       if (!url) return null;

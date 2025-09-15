@@ -161,7 +161,7 @@ export default function Footer() {
             </div>
 
             <motion.button
-              className="bg-gradient-to-r from-[var(--primary-green)] to-green-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:shadow-xl transition-all duration-300 flex items-center gap-3 group"
+              className="bg-gradient-to-r from-[var(--primary-green)] to-[var(--secondary-green)] text-white px-8 py-4 rounded-full text-lg font-semibold hover:shadow-xl transition-all duration-300 flex items-center gap-3 group"
               variants={itemVariants}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.98 }}
@@ -337,7 +337,7 @@ export default function Footer() {
                   />
                   <motion.button
                     onClick={handleSubmit}
-                    className="absolute right-1 top-1 bg-gradient-to-r from-[var(--primary-green)] to-green-600 hover:from-green-600 hover:to-[var(--primary-green)] w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 shadow-md hover:shadow-lg"
+                    className="absolute right-1 top-1 bg-gradient-to-r from-[var(--primary-green)] to-[var(--secondary-green)] hover:from-green-600 hover:to-[var(--primary-green)] w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 shadow-md hover:shadow-lg"
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
                   >
