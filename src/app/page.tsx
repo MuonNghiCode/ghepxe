@@ -1,12 +1,4 @@
-import {
-  DownloadSection,
-  Footer,
-  Header,
-  HomeHeroSection,
-  IntroduceSection,
-  PartnerSection,
-  Statcard,
-} from "@/components";
+import { Footer, Header } from "@/components";
 import Homepage from "./home/page";
 
 export default function Home() {
