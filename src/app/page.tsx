@@ -1,19 +1,12 @@
-import {
-  DownloadSection,
-  HomeHeroSection,
-  IntroduceSection,
-  PartnerSection,
-  Statcard,
-} from "@/components";
+import { Footer, Header } from "@/components";
+import Homepage from "./home/page";
 
 export default function Home() {
   return (
     <div>
-      <HomeHeroSection />
-      <Statcard />
-      <IntroduceSection />
-      <PartnerSection />
-      <DownloadSection />
+      <Header />
+      <Homepage />
+      <Footer />
     </div>
   );
 }

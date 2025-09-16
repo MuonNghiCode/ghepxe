@@ -152,7 +152,7 @@ export default function PartnerValues() {
               {valueCards.map((card, index) => (
                 <motion.div
                   key={card.title}
-                  className="bg-gray-50 hover:bg-white rounded-2xl p-6 flex items-start gap-4 shadow-sm hover:shadow-lg border border-gray-100 hover:border-[var(--primary-green)]/20 transition-all duration-300"
+                  className="bg-white rounded-2xl p-6 flex items-start gap-4 shadow-sm hover:shadow-lg border border-gray-100 hover:border-[var(--primary-green)]/20 transition-all duration-300"
                   variants={cardVariants}
                   whileHover={{
                     y: -4,
