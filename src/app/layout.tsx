@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Roboto, Roboto_Serif } from "next/font/google";
 import "./globals.css";
 import "../styles/colors.css";
-import { Footer, Header, NoScrollGapFix, ScrollToTop } from "@/components";
+import { ScrollToTop } from "@/components";
 import { LanguageProvider } from "@/context/LanguageContext";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 // Roboto (sans-serif)
@@ -35,14 +35,9 @@ export default function RootLayout({
         className={`${roboto.variable} ${robotoSerif.variable} antialiased min-h-screen flex flex-col`}
       >
         <LanguageProvider>
-          <NoScrollGapFix />
           <ScrollToTop />
-          <main className="flex-1 w-full flex flex-col relative">
-            <Header />
-            {children}
-            <SpeedInsights />
-          </main>
-          <Footer />
+          {children}
+          <SpeedInsights />
         </LanguageProvider>
       </body>
     </html>

@@ -1,4 +1,6 @@
 import {
+  Footer,
+  Header,
   ServiceFAQSection,
   ServiceHeroSection,
   ServiceIntroduceSection,
@@ -8,10 +10,12 @@ import {
 export default function Service() {
   return (
     <div>
+      <Header />
       <ServiceHeroSection />
       <ServiceValues />
       <ServiceIntroduceSection />
       <ServiceFAQSection />
+      <Footer />
     </div>
   );
 }
