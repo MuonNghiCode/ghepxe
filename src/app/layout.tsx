@@ -35,14 +35,8 @@ export default function RootLayout({
         className={`${roboto.variable} ${robotoSerif.variable} antialiased min-h-screen flex flex-col`}
       >
         <LanguageProvider>
-          <NoScrollGapFix />
-          <ScrollToTop />
-          <main className="flex-1 w-full flex flex-col relative">
-            <Header />
-            {children}
-            <SpeedInsights />
-          </main>
-          <Footer />
+          {children}
+          <SpeedInsights />
         </LanguageProvider>
       </body>
     </html>
