@@ -1,7 +1,25 @@
 "use client";
 import { easeOut, motion } from "framer-motion";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function Statcard() {
+  const { language } = useLanguage();
+
+  const statsData = {
+    vi: [
+      { number: "100+", label: "Đơn đặt hàng" },
+      { number: "100%", label: "Đúng tiến độ" },
+      { number: "100%", label: "Tiết kiệm chi phí" },
+    ],
+    en: [
+      { number: "100+", label: "Orders placed" },
+      { number: "100%", label: "On schedule" },
+      { number: "100%", label: "Cost saving" },
+    ],
+  };
+
+  const stats = statsData[language as keyof typeof statsData];
+
   const cardVariants = {
     hidden: { opacity: 0, y: 50, scale: 0.9 },
     visible: {
@@ -28,12 +46,6 @@ export default function Statcard() {
       },
     }),
   };
-
-  const stats = [
-    { number: "100+", label: "Đơn đặt hàng" },
-    { number: "100%", label: "Đúng tiến độ" },
-    { number: "100%", label: "Tiết kiệm chi phí" },
-  ];
 
   return (
     <section className="absolute w-full">

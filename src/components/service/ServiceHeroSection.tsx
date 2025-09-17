@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { easeInOut, easeOut, motion } from "framer-motion";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface HeroImage {
   id: number;
@@ -40,7 +41,23 @@ const heroImages: HeroImage[] = [
   },
 ];
 
+const texts = {
+  vi: {
+    title1: "Dịch vụ",
+    title2: "GhepXe",
+    desc: "GhepXe cho phép bạn đặt xe trong tích tắc, mọi lúc bạn cần! Tải ứng dụng để trải nghiệm các dịch vụ của GhepXe.",
+  },
+  en: {
+    title1: "Services",
+    title2: "GhepXe",
+    desc: "GhepXe lets you book a ride instantly, whenever you need! Download the app to experience all GhepXe services.",
+  },
+};
+
 export default function ServiceHeroSection() {
+  const { language } = useLanguage();
+  const t = texts[language as keyof typeof texts];
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -123,15 +140,15 @@ export default function ServiceHeroSection() {
             animate={{ opacity: 1, rotateX: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Dịch vụ
+            {t.title1}
           </motion.span>{" "}
           <motion.span
-            className="inline-block text-[var(--white]"
+            className="inline-block text-[var(--white)]"
             initial={{ opacity: 0, rotateX: 90 }}
             animate={{ opacity: 1, rotateX: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            GhepXe
+            {t.title2}
           </motion.span>
           {/* Underline cho toàn bộ title */}
           <motion.div
@@ -150,15 +167,7 @@ export default function ServiceHeroSection() {
           animate={{ opacity: 0.9, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
         >
-          GhepXe cho phép bạn đặt xe trong tích tắc, mọi lúc bạn cần! Tải ứng
-          dụng để trải nghiệm các dịch vụ của{" "}
-          <motion.span
-            className="text-[var(--white] font-semibold"
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.2 }}
-          >
-            GhepXe
-          </motion.span>
+          {t.desc}
         </motion.p>
       </motion.div>
 

@@ -2,35 +2,71 @@
 
 import { motion, AnimatePresence, easeOut } from "framer-motion";
 import { useState } from "react";
+import { useLanguage } from "@/context/LanguageContext";
 
-interface FAQ {
-  id: number;
-  question: string;
-  answer: string;
-}
+const faqsData = {
+  vi: [
+    {
+      id: 1,
+      question: "Tôi có thể từ chối đơn không phù hợp?",
+      answer:
+        "Được, bạn luôn có quyền từ chối đơn hàng không phù hợp lịch trình, tuyến hoặc loại hàng.",
+    },
+    {
+      id: 2,
+      question: "Tôi có được đánh giá khách hàng không?",
+      answer:
+        "Có, sau mỗi chuyến xong, bạn có thể để đánh giá khách hàng - giúp nâng cao chất lượng hệ thống.",
+    },
+    {
+      id: 3,
+      question: "App có hỗ trợ tối ưu đơn hàng không?",
+      answer:
+        "Có, bạn có thể gộp nhiều đơn, chia sẻ hành trình hoặc ghép lẻ các đơn để tăng thu nhập.",
+    },
+  ],
+  en: [
+    {
+      id: 1,
+      question: "Can I reject unsuitable orders?",
+      answer:
+        "Yes, you always have the right to reject orders that do not fit your schedule, route, or cargo type.",
+    },
+    {
+      id: 2,
+      question: "Can I rate customers?",
+      answer:
+        "Yes, after each trip, you can rate customers – helping improve system quality.",
+    },
+    {
+      id: 3,
+      question: "Does the app support order optimization?",
+      answer:
+        "Yes, you can merge multiple orders, share routes, or match small orders to increase your income.",
+    },
+  ],
+};
 
-const faqs: FAQ[] = [
-  {
-    id: 1,
-    question: "Tôi có thể từ chối đơn không phù hợp?",
-    answer:
-      "Được, bạn luôn có quyền từ chối đơn hàng không phù hợp lịch trình, tuyến hoặc loại hàng.",
+const texts = {
+  vi: {
+    title1: "Câu hỏi",
+    title2: "thường gặp",
+    desc: "Những câu hỏi phổ biến nhất từ đối tác tài xế GhepXe",
+    btn: "Xem thêm",
   },
-  {
-    id: 2,
-    question: "Tôi có được đánh giá khách hàng không?",
-    answer:
-      "Có, sau mỗi chuyến xong, bạn có thể để đánh giá khách hàng - giúp nâng cao chất lượng hệ thống.",
+  en: {
+    title1: "Frequently",
+    title2: "Asked Questions",
+    desc: "Most common questions from Ghepxe driver partners",
+    btn: "See more",
   },
-  {
-    id: 3,
-    question: "App có hỗ trợ tối ưu đơn hàng không?",
-    answer:
-      "Có, bạn có thể gộp nhiều đơn, chia sẻ hành trình hoặc ghép lẻ các đơn để tăng thu nhập.",
-  },
-];
+};
 
 export default function FAQSection() {
+  const { language } = useLanguage();
+  const faqs = faqsData[language as keyof typeof faqsData];
+  const t = texts[language as keyof typeof texts];
+
   const [expandedId, setExpandedId] = useState<number | null>(1);
 
   const containerVariants = {
@@ -85,14 +121,14 @@ export default function FAQSection() {
               style={{ fontFamily: "var(--font-roboto)" }}
               variants={itemVariants}
             >
-              <span className="text-gray-800">Câu hỏi</span>
+              <span className="text-gray-800">{t.title1}</span>
               <br />
               <motion.span
                 className="text-[var(--primary-green)] relative"
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.2 }}
               >
-                thường gặp
+                {t.title2}
                 <motion.div
                   className="absolute -bottom-2 left-0 h-1 bg-[var(--primary-green)]/30 rounded-full"
                   initial={{ width: 0 }}
@@ -107,7 +143,7 @@ export default function FAQSection() {
               style={{ fontFamily: "var(--font-roboto)" }}
               variants={itemVariants}
             >
-              Những câu hỏi phổ biến nhất từ đối tác tài xế GhepXe
+              {t.desc}
             </motion.p>
 
             <motion.div
@@ -123,7 +159,7 @@ export default function FAQSection() {
                 }}
                 transition={{ duration: 0.3 }}
               >
-                <span className="text-lg font-semibold">Xem thêm</span>
+                <span className="text-lg font-semibold">{t.btn}</span>
                 <motion.div
                   className="w-8 h-8 bg-white rounded-full flex items-center justify-center group-hover:rotate-90 transition-transform duration-300"
                   whileHover={{ rotate: 90 }}

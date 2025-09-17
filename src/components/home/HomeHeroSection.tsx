@@ -2,8 +2,75 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Shield, Clock } from "lucide-react";
 import Link from "next/link";
+import { useLanguage } from "@/context/LanguageContext";
+
+const texts = {
+  vi: {
+    title: "Ghepxe",
+    slogan: [
+      <>
+        Ghép đơn{" "}
+        <span className="text-[var(--primary-green)] font-medium">
+          linh hoạt
+        </span>
+      </>,
+      <>
+        tiết kiệm{" "}
+        <span className="text-[var(--primary-green)] font-medium">chi phí</span>
+      </>,
+      <>
+        giảm{" "}
+        <span className="text-[var(--primary-green)] font-medium">
+          khí thải
+        </span>
+      </>,
+    ],
+    btnMain: "Ghép xe ngay",
+    btnMainShort: "Ghép xe",
+    btnAbout: "Tìm hiểu thêm",
+    btnAboutShort: "Tìm hiểu",
+    features: [
+      { icon: Shield, text: "Miễn phí đăng ký" },
+      { icon: Shield, text: "An toàn bảo mật" },
+      { icon: Clock, text: "Hỗ trợ 24/7" },
+    ],
+  },
+  en: {
+    title: "Ghepxe",
+    slogan: [
+      <>
+        Flexible{" "}
+        <span className="text-[var(--primary-green)] font-medium">
+          order matching
+        </span>
+      </>,
+      <>
+        Save{" "}
+        <span className="text-[var(--primary-green)] font-medium">costs</span>
+      </>,
+      <>
+        Reduce{" "}
+        <span className="text-[var(--primary-green)] font-medium">
+          emissions
+        </span>
+      </>,
+    ],
+    btnMain: "Join now",
+    btnMainShort: "Join",
+    btnAbout: "Learn more",
+    btnAboutShort: "Learn",
+    features: [
+      { icon: Shield, text: "Free registration" },
+      { icon: Shield, text: "Secure & safe" },
+      { icon: Clock, text: "24/7 support" },
+    ],
+  },
+};
 
 export default function HomeHeroSection() {
+  const { language } = useLanguage();
+  const t = texts[language as keyof typeof texts];
+
   return (
     <section
       className="relative w-full min-h-screen flex items-center justify-center bg-no-repeat bg-cover md:bg-[length:100%_130%] overflow-hidden "
@@ -41,7 +108,7 @@ export default function HomeHeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            Ghepxe
+            {t.title}
           </motion.h1>
 
           <div className="max-w-4xl flex flex-col gap-6 md:gap-10">
@@ -52,39 +119,17 @@ export default function HomeHeroSection() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
-              <motion.span
-                className="block mb-1 md:mb-2"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.8 }}
-              >
-                Ghép đơn{" "}
-                <span className="text-[var(--primary-green)] font-medium">
-                  linh hoạt
-                </span>
-              </motion.span>
-              <motion.span
-                className="block mb-1 md:mb-2"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 1.0 }}
-              >
-                tiết kiệm{" "}
-                <span className="text-[var(--primary-green)] font-medium">
-                  chi phí
-                </span>
-              </motion.span>
-              <motion.span
-                className="block"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 1.2 }}
-              >
-                giảm{" "}
-                <span className="text-[var(--primary-green)] font-medium">
-                  khí thải
-                </span>
-              </motion.span>
+              {t.slogan.map((line, idx) => (
+                <motion.span
+                  key={idx}
+                  className="block mb-1 md:mb-2"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.8 + idx * 0.2 }}
+                >
+                  {line}
+                </motion.span>
+              ))}
             </motion.h2>
 
             <motion.div
@@ -98,8 +143,8 @@ export default function HomeHeroSection() {
                 className="flex items-center justify-center group px-5 py-4 md:px-8 rounded-xl bg-[var(--primary-green)] text-white font-semibold hover:bg-[var(--primary-green)]/90 transition-all duration-300 transform hover:scale-105 hover:shadow-xl shadow-lg flex-1 md:flex-none md:min-w-[200px] h-[56px]"
               >
                 <span className="flex items-center justify-center gap-2 text-sm md:text-base">
-                  <span className="hidden sm:inline">Ghép xe ngay</span>
-                  <span className="sm:hidden">Ghép xe</span>
+                  <span className="hidden sm:inline">{t.btnMain}</span>
+                  <span className="sm:hidden">{t.btnMainShort}</span>
                   <div className="flex items-center justify-center">
                     <div className="bg-white rounded-full p-1 shadow">
                       <ArrowRight
@@ -116,8 +161,8 @@ export default function HomeHeroSection() {
                 href="about-us"
                 className="flex items-center justify-center px-5 md:px-8 rounded-xl border-2 border-white/30 text-white font-semibold hover:border-white/50 hover:bg-white/10 transition-all duration-300 backdrop-blur-sm flex-1 md:flex-none md:min-w-[200px] h-[58px] text-sm md:text-base"
               >
-                <span className="hidden sm:inline">Tìm hiểu thêm</span>
-                <span className="sm:hidden">Tìm hiểu</span>
+                <span className="hidden sm:inline">{t.btnAbout}</span>
+                <span className="sm:hidden">{t.btnAboutShort}</span>
               </Link>
             </motion.div>
 
@@ -127,27 +172,15 @@ export default function HomeHeroSection() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 1.6 }}
             >
-              <div className="flex items-center gap-1 md:gap-2">
-                <Shield
-                  size={14}
-                  className="text-[var(--primary-green)] md:w-4 md:h-4"
-                />
-                <span className="whitespace-nowrap">Miễn phí đăng ký</span>
-              </div>
-              <div className="flex items-center gap-1 md:gap-2">
-                <Shield
-                  size={14}
-                  className="text-[var(--primary-green)] md:w-4 md:h-4"
-                />
-                <span className="whitespace-nowrap">An toàn bảo mật</span>
-              </div>
-              <div className="flex items-center gap-1 md:gap-2">
-                <Clock
-                  size={14}
-                  className="text-[var(--primary-green)] md:w-4 md:h-4"
-                />
-                <span className="whitespace-nowrap">Hỗ trợ 24/7</span>
-              </div>
+              {t.features.map(({ icon: Icon, text }, idx) => (
+                <div key={idx} className="flex items-center gap-1 md:gap-2">
+                  <Icon
+                    size={14}
+                    className="text-[var(--primary-green)] md:w-4 md:h-4"
+                  />
+                  <span className="whitespace-nowrap">{text}</span>
+                </div>
+              ))}
             </motion.div>
           </div>
         </div>

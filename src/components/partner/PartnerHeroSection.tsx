@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { easeInOut, easeOut, motion } from "framer-motion";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface HeroImage {
   id: number;
@@ -40,7 +41,23 @@ const heroImages: HeroImage[] = [
   },
 ];
 
-export default function ServiceHeroSection() {
+const texts = {
+  vi: {
+    title1: "Cộng Đồng Vận Tải",
+    title2: "GhepXe",
+    desc: "Làm nên thành công của chúng tôi không thể thiếu những đóng góp của bạn",
+  },
+  en: {
+    title1: "Transport Community",
+    title2: "GhepXe",
+    desc: "Our success cannot be achieved without your valuable contributions",
+  },
+};
+
+export default function PartnerHeroSection() {
+  const { language } = useLanguage();
+  const t = texts[language as keyof typeof texts];
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -123,15 +140,15 @@ export default function ServiceHeroSection() {
             animate={{ opacity: 1, rotateX: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Cộng Đồng Vận Tải
+            {t.title1}
           </motion.span>{" "}
           <motion.span
-            className="inline-block text-[var(--white]"
+            className="inline-block text-[var(--white)]"
             initial={{ opacity: 0, rotateX: 90 }}
             animate={{ opacity: 1, rotateX: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            GhepXe
+            {t.title2}
           </motion.span>
           {/* Underline cho toàn bộ title */}
           <motion.div
@@ -150,8 +167,7 @@ export default function ServiceHeroSection() {
           animate={{ opacity: 0.9, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
         >
-          Làm nên thành công của chúng tôi không thể thiếu những đóng góp của
-          bạn{" "}
+          {t.desc}
         </motion.p>
       </motion.div>
 

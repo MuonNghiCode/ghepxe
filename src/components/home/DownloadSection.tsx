@@ -4,8 +4,35 @@ import Link from "next/link";
 import { useRef } from "react";
 import Particle from "../ui/Particle";
 import Image from "next/image";
+import { useLanguage } from "@/context/LanguageContext";
+
+const texts = {
+  vi: {
+    title: "Tải Ngay Ứng Dụng",
+    appName: "GhepXe",
+    features: [
+      "Theo dõi đơn hàng",
+      "Nhận thông báo thời gian thực",
+      "Kết nối đối tác vận tải dễ dàng",
+    ],
+    btn: "Tải ứng dụng",
+  },
+  en: {
+    title: "Download the App",
+    appName: "GhepXe",
+    features: [
+      "Track orders",
+      "Receive real-time notifications",
+      "Easily connect with transport partners",
+    ],
+    btn: "Download App",
+  },
+};
 
 export default function DownloadSection() {
+  const { language } = useLanguage();
+  const t = texts[language as keyof typeof texts];
+
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
 
@@ -70,12 +97,6 @@ export default function DownloadSection() {
     },
   };
 
-  const features = [
-    "Theo dõi đơn hàng",
-    "Nhận thông báo thời gian thực",
-    "Kết nối đối tác vận tải dễ dàng",
-  ];
-
   return (
     <motion.section
       ref={ref}
@@ -115,7 +136,7 @@ export default function DownloadSection() {
             variants={titleVariants}
             style={{ fontFamily: "var(--font-roboto)" }}
           >
-            Tải Ngay Ứng Dụng
+            {t.title}
           </motion.h3>
 
           <motion.h2
@@ -125,14 +146,14 @@ export default function DownloadSection() {
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.2 }}
           >
-            GhepXe
+            {t.appName}
           </motion.h2>
 
           <motion.ul
             className="text-[var(--gray-text)] text-base md:text-lg lg:text-xl space-y-4 font-medium"
             variants={containerVariants}
           >
-            {features.map((feature, index) => (
+            {t.features.map((feature, index) => (
               <motion.li
                 key={index}
                 className="flex items-center gap-3 group justify-center md:justify-start"
@@ -162,7 +183,13 @@ export default function DownloadSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1, duration: 0.6 }}
-          ></motion.div>
+          >
+            <Link href="/download">
+              <button className="px-8 py-4 rounded-full bg-[var(--primary-green)] text-white font-bold text-lg shadow-lg hover:bg-green-700 transition-all duration-300">
+                {t.btn}
+              </button>
+            </Link>
+          </motion.div>
         </motion.div>
         {/* Right: Phone Image */}
         <motion.div
