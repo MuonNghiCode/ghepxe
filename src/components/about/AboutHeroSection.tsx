@@ -2,16 +2,9 @@
 
 import Image from "next/image";
 import { easeInOut, easeOut, motion } from "framer-motion";
+import { useLanguage } from "@/context/LanguageContext";
 
-interface HeroImage {
-  id: number;
-  src: string;
-  alt: string;
-  aspectRatio: "square" | "rectangle";
-  marginTop?: boolean;
-}
-
-const heroImages: HeroImage[] = [
+const heroImages = [
   {
     id: 1,
     src: "/aboutus/about1.png",
@@ -40,7 +33,23 @@ const heroImages: HeroImage[] = [
   },
 ];
 
+const texts = {
+  vi: {
+    title: "Về chúng tôi",
+    description:
+      "Tại GhepXe, chúng tôi tin rằng sự đổi mới trong vận tải có thể giúp doanh nghiệp tiết kiệm thời gian, chi phí và nâng cao tỷ lệ giao hàng thành công.",
+  },
+  en: {
+    title: "About Us",
+    description:
+      "At GhepXe, we believe that innovation in transportation can help businesses save time, reduce costs, and improve delivery success rates.",
+  },
+};
+
 export default function ServiceHeroSection() {
+  const { language } = useLanguage();
+  const t = texts[language as keyof typeof texts];
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -123,7 +132,7 @@ export default function ServiceHeroSection() {
             animate={{ opacity: 1, rotateX: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Về chúng tôi
+            {t.title}
           </motion.span>
           {/* Underline cho toàn bộ title */}
           <motion.div
@@ -142,9 +151,7 @@ export default function ServiceHeroSection() {
           animate={{ opacity: 0.9, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
         >
-          Tại GhepXe, chúng tôi tin rằng sự đổi mới trong vận tải có thể giúp
-          doanh nghiệp tiết kiệm thời gian, chi phí và nâng cao tỷ lệ giao hàng
-          thành công{" "}
+          {t.description}
         </motion.p>
       </motion.div>
 

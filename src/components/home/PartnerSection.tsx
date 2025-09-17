@@ -3,8 +3,41 @@ import { easeInOut, easeOut, motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import Particle from "../ui/Particle";
 import Image from "next/image";
+import { useLanguage } from "@/context/LanguageContext";
+
+const texts = {
+  vi: {
+    title: ["Đồng hành thật", "Đơn hàng thật", "Niềm tin thật"],
+    desc: (
+      <>
+        <span className="font-bold text-[var(--primary-green)]">Ghepxe</span>{" "}
+        mang đến nền tảng vận tải thông minh giúp bạn nhận đơn hàng ổn định mỗi
+        ngày một cách minh bạch, thuận tiện và đáng tin cậy.
+      </>
+    ),
+    btn: "Trở Thành Đối Tác",
+    question1: "Bạn có xe?",
+    question2: "Muốn có đơn đều?",
+  },
+  en: {
+    title: ["Real partnership", "Real orders", "Real trust"],
+    desc: (
+      <>
+        <span className="font-bold text-[var(--primary-green)]">Ghepxe</span>{" "}
+        brings a smart transport platform to help you receive stable orders
+        every day transparently, conveniently, and reliably.
+      </>
+    ),
+    btn: "Become a Partner",
+    question1: "Do you have a vehicle?",
+    question2: "Want regular orders?",
+  },
+};
 
 export default function PartnerSection() {
+  const { language } = useLanguage();
+  const t = texts[language as keyof typeof texts];
+
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
 
@@ -141,24 +174,15 @@ export default function PartnerSection() {
               style={{ fontFamily: "var(--font-roboto-serif)" }}
               variants={textVariants}
             >
-              <motion.span
-                className="block mb-2 bg-gradient-to-r from-[var(--primary-green)] to-[var(--secondary-green)] bg-clip-text text-transparent"
-                variants={titleLineVariants}
-              >
-                Đồng hành thật
-              </motion.span>
-              <motion.span
-                className="block mb-2 bg-gradient-to-r from-[var(--primary-green)] to-[var(--secondary-green)] bg-clip-text text-transparent"
-                variants={titleLineVariants}
-              >
-                Đơn hàng thật
-              </motion.span>
-              <motion.span
-                className="block bg-gradient-to-r from-[var(--primary-green)] to-[var(--secondary-green)] bg-clip-text text-transparent"
-                variants={titleLineVariants}
-              >
-                Niềm tin thật
-              </motion.span>
+              {t.title.map((line, idx) => (
+                <motion.span
+                  key={idx}
+                  className="block mb-2 bg-gradient-to-r from-[var(--primary-green)] to-[var(--secondary-green)] bg-clip-text text-transparent"
+                  variants={titleLineVariants}
+                >
+                  {line}
+                </motion.span>
+              ))}
             </motion.h2>
 
             <motion.p
@@ -166,11 +190,7 @@ export default function PartnerSection() {
               variants={itemVariants}
               style={{ fontFamily: "var(--font-roboto)" }}
             >
-              <span className="font-bold text-[var(--primary-green)]">
-                Ghepxe
-              </span>{" "}
-              mang đến nền tảng vận tải thông minh giúp bạn nhận đơn hàng ổn
-              định mỗi ngày một cách minh bạch, thuận tiện và đáng tin cậy.
+              {t.desc}
             </motion.p>
           </motion.div>
         </div>
@@ -211,10 +231,10 @@ export default function PartnerSection() {
               transition={{ delay: 0.6, duration: 0.5 }}
             >
               <h3 className="font-bold text-2xl md:text-3xl mb-2">
-                Bạn có xe?
+                {t.question1}
               </h3>
               <p className="text-xl md:text-2xl font-medium opacity-90">
-                Muốn có đơn đều?
+                {t.question2}
               </p>
             </motion.div>
 
@@ -229,7 +249,7 @@ export default function PartnerSection() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.8, duration: 0.5 }}
             >
-              <span className="relative z-10">Trở Thành Đối Tác</span>
+              <span className="relative z-10">{t.btn}</span>
               <motion.div
                 className="absolute inset-0 bg-gradient-to-r from-green-50 to-green-100 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                 initial={false}

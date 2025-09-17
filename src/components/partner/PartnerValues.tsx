@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { easeOut, motion } from "framer-motion";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface ValueCard {
   icon: string;
@@ -15,61 +16,176 @@ interface BenefitItem {
   description: string;
 }
 
-const valueCards: ValueCard[] = [
-  {
-    icon: "/aboutus/icon/toiuu.svg",
-    title: "Tối Ưu",
-    description:
-      "Tối ưu xe chiều về rỗng, ghép đơn dễ dàng, giảm lãng phí nhiên liệu.",
-    alt: "Tối Ưu",
-  },
-  {
-    icon: "/aboutus/icon/tincay.svg",
-    title: "Tin Cậy",
-    description:
-      "Đơn hàng minh bạch, có hợp đồng điện tử – dễ kiểm soát, hạn chế rủi ro.",
-    alt: "Tin Cậy",
-  },
-  {
-    icon: "/aboutus/icon/benvung.svg",
-    title: "Bền Vững",
-    description:
-      "Tối ưu xe trống chiều về, giảm thiểu khí thải CO₂ cho hành tinh xanh hơn.",
-    alt: "Bền Vững",
-  },
-  {
-    icon: "/aboutus/icon/linhhoat.svg",
-    title: "Linh Hoạt",
-    description:
-      "Tự tạo chuyến – tự chọn đơn – chủ động hành trình và thu nhập.",
-    alt: "Linh Hoạt",
-  },
-];
+const valueCardsData = {
+  vi: [
+    {
+      icon: "/aboutus/icon/toiuu.svg",
+      title: "Tối Ưu",
+      description:
+        "Tối ưu xe chiều về rỗng, ghép đơn dễ dàng, giảm lãng phí nhiên liệu.",
+      alt: "Tối Ưu",
+    },
+    {
+      icon: "/aboutus/icon/tincay.svg",
+      title: "Tin Cậy",
+      description:
+        "Đơn hàng minh bạch, có hợp đồng điện tử – dễ kiểm soát, hạn chế rủi ro.",
+      alt: "Tin Cậy",
+    },
+    {
+      icon: "/aboutus/icon/benvung.svg",
+      title: "Bền Vững",
+      description:
+        "Tối ưu xe trống chiều về, giảm thiểu khí thải CO₂ cho hành tinh xanh hơn.",
+      alt: "Bền Vững",
+    },
+    {
+      icon: "/aboutus/icon/linhhoat.svg",
+      title: "Linh Hoạt",
+      description:
+        "Tự tạo chuyến – tự chọn đơn – chủ động hành trình và thu nhập.",
+      alt: "Linh Hoạt",
+    },
+  ],
+  en: [
+    {
+      icon: "/aboutus/icon/toiuu.svg",
+      title: "Optimization",
+      description:
+        "Optimize empty return trips, easy order matching, reduce fuel waste.",
+      alt: "Optimization",
+    },
+    {
+      icon: "/aboutus/icon/tincay.svg",
+      title: "Reliability",
+      description:
+        "Transparent orders, e-contracts – easy control, minimize risks.",
+      alt: "Reliability",
+    },
+    {
+      icon: "/aboutus/icon/benvung.svg",
+      title: "Sustainability",
+      description:
+        "Optimize empty vehicles, reduce CO₂ emissions for a greener planet.",
+      alt: "Sustainability",
+    },
+    {
+      icon: "/aboutus/icon/linhhoat.svg",
+      title: "Flexibility",
+      description:
+        "Create trips – choose orders – control your journey and income.",
+      alt: "Flexibility",
+    },
+  ],
+};
 
-const benefits: BenefitItem[] = [
-  {
-    title: "Tăng thu nhập từ mỗi chuyến",
-    description:
-      "Không chỉ dựa vào đơn chính - bạn có thể ghép thêm hàng chiều về để tối ưu doanh thu.",
+const benefitsData = {
+  vi: [
+    {
+      title: "Tăng thu nhập từ mỗi chuyến",
+      description:
+        "Không chỉ dựa vào đơn chính - bạn có thể ghép thêm hàng chiều về để tối ưu doanh thu.",
+    },
+    {
+      title: "Chủ động chọn tuyến phù hợp",
+      description:
+        "Dễ dàng chọn đơn theo tuyến, thời gian, tải trọng phù hợp với hành trình của bạn.",
+    },
+    {
+      title: "Có hợp đồng rõ ràng",
+      description:
+        "Hệ thống tự tạo biên nhận và hợp đồng điện tử cho từng đơn hàng - minh bạch trách nhiệm.",
+    },
+    {
+      title: "Tiết kiệm nhiên liệu, giảm CO₂",
+      description:
+        'Ứng dụng tự động tính toán khí thải CO₂, bạn tiết kiệm được sau mỗi chuyến xe. Bạn có thể theo dõi và chia sẻ đóng góp "xanh" của mình.',
+    },
+  ],
+  en: [
+    {
+      title: "Increase income per trip",
+      description:
+        "Not only from main orders – you can add return cargo to optimize revenue.",
+    },
+    {
+      title: "Choose suitable routes proactively",
+      description:
+        "Easily select orders by route, time, and load to fit your journey.",
+    },
+    {
+      title: "Clear contracts",
+      description:
+        "System automatically generates receipts and e-contracts for each order – transparent responsibility.",
+    },
+    {
+      title: "Save fuel, reduce CO₂",
+      description:
+        'The app automatically calculates CO₂ savings after each trip. You can track and share your "green" contribution.',
+    },
+  ],
+};
+
+const titles = {
+  vi: {
+    values: (
+      <>
+        <span className="whitespace-nowrap">Gia nhập</span>
+        <br />
+        <span className="whitespace-nowrap">Cộng Đồng</span>
+        <br />
+        <span className="whitespace-nowrap">Vận Tải</span>
+        <br />
+        <span className="whitespace-nowrap text-[var(--primary-green)]">
+          GhepXe
+        </span>
+      </>
+    ),
+    why: (
+      <>
+        <span className="text-gray-800">Tại sao nên</span>
+        <br />
+        <span className="text-gray-800">tham gia</span>
+        <br />
+        <span className="text-[var(--primary-green)]">GhepXe</span>
+        <span className="text-gray-800">?</span>
+      </>
+    ),
+    whyDesc:
+      "Khám phá những lợi ích tuyệt vời khi trở thành đối tác của GhepXe",
   },
-  {
-    title: "Chủ động chọn tuyến phù hợp",
-    description:
-      "Dễ dàng chọn đơn theo tuyến, thời gian, tải trọng phù hợp với hành trình của bạn.",
+  en: {
+    values: (
+      <>
+        <span className="whitespace-nowrap">Join</span>
+        <br />
+        <span className="whitespace-nowrap">Transport</span>
+        <br />
+        <span className="whitespace-nowrap">Community</span>
+        <br />
+        <span className="whitespace-nowrap text-[var(--primary-green)]">
+          GhepXe
+        </span>
+      </>
+    ),
+    why: (
+      <>
+        <span className="text-gray-800">Why join</span>
+        <br />
+        <span className="text-gray-800">GhepXe</span>
+        <span className="text-gray-800">?</span>
+      </>
+    ),
+    whyDesc: "Discover great benefits when becoming a GhepXe partner",
   },
-  {
-    title: "Có hợp đồng rõ ràng",
-    description:
-      "Hệ thống tự tạo biên nhận và hợp đồng điện tử cho từng đơn hàng - minh bạch trách nhiệm.",
-  },
-  {
-    title: "Tiết kiệm nhiên liệu, giảm CO₂",
-    description:
-      'Ứng dụng tự động tính toán khí thải CO₂, bạn tiết kiệm được sau mỗi chuyến xe. Bạn có thể theo dõi và chia sẻ đóng góp "xanh" của mình.',
-  },
-];
+};
 
 export default function PartnerValues() {
+  const { language } = useLanguage();
+  const valueCards = valueCardsData[language as keyof typeof valueCardsData];
+  const benefits = benefitsData[language as keyof typeof benefitsData];
+  const t = titles[language as keyof typeof titles];
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -127,19 +243,7 @@ export default function PartnerValues() {
               style={{ fontFamily: "var(--font-roboto)" }}
               variants={itemVariants}
             >
-              <span className="whitespace-nowrap">Gia nhập</span>
-              <br />
-              <span className="whitespace-nowrap">Cộng Đồng</span>
-              <br />
-              <span className="whitespace-nowrap">Vận Tải</span>
-              <br />
-              <motion.span
-                className="whitespace-nowrap text-[var(--primary-green)]"
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.2 }}
-              >
-                GhepXe
-              </motion.span>
+              {t.values}
             </motion.h2>
           </motion.div>
 
@@ -251,18 +355,7 @@ export default function PartnerValues() {
                 style={{ fontFamily: "var(--font-roboto)" }}
                 variants={itemVariants}
               >
-                <span className="text-gray-800">Tại sao nên</span>
-                <br />
-                <span className="text-gray-800">tham gia</span>
-                <br />
-                <motion.span
-                  className="text-[var(--primary-green)]"
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  GhepXe
-                </motion.span>
-                <span className="text-gray-800">?</span>
+                {t.why}
               </motion.h2>
 
               <motion.p
@@ -270,8 +363,7 @@ export default function PartnerValues() {
                 style={{ fontFamily: "var(--font-roboto)" }}
                 variants={itemVariants}
               >
-                Khám phá những lợi ích tuyệt vời khi trở thành đối tác của
-                GhepXe
+                {t.whyDesc}
               </motion.p>
             </div>
           </motion.div>

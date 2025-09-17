@@ -2,24 +2,57 @@
 
 import Image from "next/image";
 import { easeOut, motion } from "framer-motion";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface Requirement {
   id: number;
   text: string;
 }
 
-const requirements: Requirement[] = [
-  {
-    id: 1,
-    text: "Gửi hàng đi khắp các tỉnh thành – quần áo, đồ ăn, nông sản, đồ gia dụng,...",
+const requirementsData = {
+  vi: [
+    {
+      id: 1,
+      text: "Gửi hàng đi khắp các tỉnh thành – quần áo, đồ ăn, nông sản, đồ gia dụng,...",
+    },
+    {
+      id: 2,
+      text: "Ghép đơn tiện tuyến – tiết kiệm chi phí, nhận hàng đúng hẹn, có theo dõi lộ trình.",
+    },
+  ],
+  en: [
+    {
+      id: 1,
+      text: "Send goods to all provinces – clothes, food, agricultural products, household items, ...",
+    },
+    {
+      id: 2,
+      text: "Flexible order matching – save costs, receive goods on time, with route tracking.",
+    },
+  ],
+};
+
+const texts = {
+  vi: {
+    title1: "Gửi hàng",
+    title2: "liên tỉnh",
+    btn: "TẢI APP NGAY",
+    imgAlt: "Bạn cần chuẩn bị",
   },
-  {
-    id: 2,
-    text: "Ghép đơn tiện tuyến – tiết kiệm chi phí, nhận hàng đúng hẹn, có theo dõi lộ trình.",
+  en: {
+    title1: "Interprovincial",
+    title2: "Shipping",
+    btn: "DOWNLOAD APP",
+    imgAlt: "What you need to prepare",
   },
-];
+};
 
 export default function ServiceIntroduceSection() {
+  const { language } = useLanguage();
+  const requirements =
+    requirementsData[language as keyof typeof requirementsData];
+  const t = texts[language as keyof typeof texts];
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -85,13 +118,13 @@ export default function ServiceIntroduceSection() {
               style={{ fontFamily: "var(--font-roboto)" }}
               variants={itemVariants}
             >
-              <span className="text-gray-800">Gửi hàng</span>
+              <span className="text-gray-800">{t.title1}</span>
               <motion.span
                 className="text-[var(--primary-green)] relative"
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.2 }}
               >
-                liên tỉnh
+                {t.title2}
                 <motion.div
                   className="absolute -bottom-2 left-1/2 -translate-x-1/2 h-1 bg-[var(--primary-green)]/30 rounded-full"
                   initial={{ width: 0 }}
@@ -151,7 +184,7 @@ export default function ServiceIntroduceSection() {
                 }}
                 transition={{ duration: 0.3 }}
               >
-                <span className="text-lg font-semibold">TẢI APP NGAY</span>
+                <span className="text-lg font-semibold">{t.btn}</span>
                 <motion.div
                   className="w-8 h-8 bg-white rounded-full flex items-center justify-center group-hover:rotate-90 transition-transform duration-300"
                   whileHover={{ rotate: 90 }}
@@ -205,7 +238,7 @@ export default function ServiceIntroduceSection() {
               >
                 <Image
                   src="/service/tieuthuong.webp"
-                  alt="Bạn cần chuẩn bị"
+                  alt={t.imgAlt}
                   width={900}
                   height={900}
                   className="w-full h-auto object-cover rounded-2xl shadow-2xl"
