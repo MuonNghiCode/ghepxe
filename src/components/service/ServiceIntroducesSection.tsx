@@ -4,11 +4,6 @@ import Image from "next/image";
 import { easeOut, motion } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
 
-interface Requirement {
-  id: number;
-  text: string;
-}
-
 const requirementsData = {
   vi: [
     {

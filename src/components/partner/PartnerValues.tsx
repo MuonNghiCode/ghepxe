@@ -4,18 +4,6 @@ import Image from "next/image";
 import { easeOut, motion } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
 
-interface ValueCard {
-  icon: string;
-  title: string;
-  description: string;
-  alt: string;
-}
-
-interface BenefitItem {
-  title: string;
-  description: string;
-}
-
 const valueCardsData = {
   vi: [
     {

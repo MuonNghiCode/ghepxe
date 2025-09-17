@@ -4,12 +4,6 @@ import { motion, AnimatePresence, easeOut } from "framer-motion";
 import { useState } from "react";
 import { useLanguage } from "@/context/LanguageContext";
 
-interface FAQ {
-  id: number;
-  question: string;
-  answer: string;
-}
-
 const faqsData = {
   vi: [
     {

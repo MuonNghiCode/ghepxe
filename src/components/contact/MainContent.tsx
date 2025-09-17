@@ -21,12 +21,6 @@ interface FormData {
   message: string;
 }
 
-interface ContactInfo {
-  icon: React.ReactElement;
-  text: string;
-  type: "phone" | "email" | "address";
-}
-
 interface SocialLink {
   icon: React.ReactElement;
   href: string;
