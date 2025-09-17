@@ -28,13 +28,18 @@ export default function Footer() {
       cta2: "Nền tảng ghép xe thông minh giúp vận chuyển nhanh hơn, tiết kiệm hơn và minh bạch hơn.",
       contactBtn: "Liên hệ với GhepXe",
       company: "Công Ty",
-      companyLinks: ["Về chúng tôi", "Chính sách", "Hợp tác", "Tuyển dụng"],
+      companyLinks: [
+        { label: "Về chúng tôi", href: "/about-us" },
+        { label: "Chính sách", href: "/policy" },
+        { label: "Hợp tác", href: "/partner" },
+        { label: "Tuyển dụng", href: "/careers" },
+      ],
       services: "Dịch Vụ",
       serviceLinks: [
-        "Ghép đơn cá nhân",
-        "Ghép đơn doanh nghiệp",
-        "Ghép đơn tiết kiệm",
-        "Vận chuyển nhanh",
+        { label: "Ghép đơn cá nhân", href: "/service" },
+        { label: "Ghép đơn doanh nghiệp", href: "/service" },
+        { label: "Ghép đơn tiết kiệm", href: "/service" },
+        { label: "Vận chuyển nhanh", href: "/service" },
       ],
       contact: "Liên Hệ",
       phone: "Hotline",
@@ -44,7 +49,11 @@ export default function Footer() {
       newsletter: "Nhận thông báo mới nhất",
       newsletterPlaceholder: "Nhập email của bạn...",
       copyright: "© 2025 GHEPXE. All rights reserved.",
-      policy: ["Chính sách bảo mật", "Điều khoản sử dụng", "Bản đồ"],
+      policy: [
+        { label: "Chính sách bảo mật", href: "/privacy" },
+        { label: "Điều khoản sử dụng", href: "/terms" },
+        { label: "Bản đồ", href: "/contact" },
+      ],
     },
     en: {
       connect: "Connect with us",
@@ -52,13 +61,18 @@ export default function Footer() {
       cta2: "The smart vehicle matching platform helps transport faster, cheaper, and more transparently..",
       contactBtn: "Contact GhepXe",
       company: "Company",
-      companyLinks: ["About us", "Policy", "Partnership", "Careers"],
+      companyLinks: [
+        { label: "About us", href: "/about-us" },
+        { label: "Policy", href: "/policy" },
+        { label: "Partnership", href: "/partner" },
+        { label: "Careers", href: "/careers" },
+      ],
       services: "Services",
       serviceLinks: [
-        "Personal ride share",
-        "Business ride share",
-        "Economy ride share",
-        "Express delivery",
+        { label: "Personal ride share", href: "/service" },
+        { label: "Business ride share", href: "/service" },
+        { label: "Economy ride share", href: "/service" },
+        { label: "Express delivery", href: "/service" },
       ],
       contact: "Contact",
       phone: "Hotline",
@@ -68,7 +82,11 @@ export default function Footer() {
       newsletter: "Get the latest updates",
       newsletterPlaceholder: "Enter your email...",
       copyright: "© 2025 GHEPXE. All rights reserved.",
-      policy: ["Privacy Policy", "Terms of Use", "Sitemap"],
+      policy: [
+        { label: "Privacy Policy", href: "/privacy" },
+        { label: "Terms of Use", href: "/terms" },
+        { label: "Sitemap", href: "/contact" },
+      ],
     },
   };
 
@@ -238,20 +256,20 @@ export default function Footer() {
                 <div className="absolute bottom-0 left-0 w-8 h-0.5 bg-[var(--primary-green)] rounded-full" />
               </h4>
               <ul className="space-y-4">
-                {t.companyLinks.map((item: string, index: number) => (
+                {t.companyLinks.map((item, index: number) => (
                   <motion.li
-                    key={item}
+                    key={item.label}
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1 }}
                   >
-                    <a
-                      href="#"
+                    <Link
+                      href={item.href}
                       className="text-gray-600 hover:text-[var(--primary-green)] transition-colors duration-200 flex items-center gap-2 group"
                     >
                       <span className="w-1 h-1 bg-[var(--primary-green)] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
-                      {item}
-                    </a>
+                      {item.label}
+                    </Link>
                   </motion.li>
                 ))}
               </ul>
@@ -264,20 +282,20 @@ export default function Footer() {
                 <div className="absolute bottom-0 left-0 w-8 h-0.5 bg-[var(--primary-green)] rounded-full" />
               </h4>
               <ul className="space-y-4">
-                {t.serviceLinks.map((item: string, index: number) => (
+                {t.serviceLinks.map((item, index: number) => (
                   <motion.li
-                    key={item}
+                    key={item.label}
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1 }}
                   >
-                    <a
-                      href="#"
+                    <Link
+                      href={item.href}
                       className="text-gray-600 hover:text-[var(--primary-green)] transition-colors duration-200 flex items-center gap-2 group"
                     >
                       <span className="w-1 h-1 bg-[var(--primary-green)] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
-                      {item}
-                    </a>
+                      {item.label}
+                    </Link>
                   </motion.li>
                 ))}
               </ul>
@@ -370,15 +388,15 @@ export default function Footer() {
             </div>
 
             <div className="flex flex-wrap gap-6 justify-center">
-              {t.policy.map((item: string) => (
+              {t.policy.map((item) => (
                 <motion.a
-                  key={item}
-                  href="#"
+                  key={item.label}
+                  href={item.href}
                   className="text-gray-600 hover:text-[var(--primary-green)] transition-colors duration-200 text-sm"
                   whileHover={{ y: -1 }}
                   transition={{ duration: 0.2 }}
                 >
-                  {item}
+                  {item.label}
                 </motion.a>
               ))}
             </div>

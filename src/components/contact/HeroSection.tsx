@@ -3,8 +3,27 @@
 import Image from "next/image";
 import { easeOut, motion } from "framer-motion";
 import FloatingParticle from "../ui/FloatingParticle";
+import { useLanguage } from "@/context/LanguageContext";
+
+const texts = {
+  vi: {
+    title: "GhepXe",
+    subtitle: "Luôn Lắng Nghe Bạn",
+    description:
+      "Mọi ý kiến, góp ý của bạn đều quan trọng với chúng tôi. Hãy chia sẻ để GhepXe ngày càng hoàn thiện hơn.",
+  },
+  en: {
+    title: "GhepXe",
+    subtitle: "Always Listening to You",
+    description:
+      "Your feedback is important to us. Share your thoughts to help GhepXe improve every day.",
+  },
+};
 
 export default function HeroSection() {
+  const { language } = useLanguage();
+  const t = texts[language as keyof typeof texts];
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -117,7 +136,7 @@ export default function HeroSection() {
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.3 }}
           >
-            GhepXe
+            {t.title}
             <motion.div
               className="absolute -bottom-2 left-0 h-1 bg-[var(--primary-green)]/50 rounded-full"
               initial={{ width: 0 }}
@@ -137,7 +156,7 @@ export default function HeroSection() {
                 ease: "easeInOut",
               }}
             >
-              GhepXe
+              {t.title}
             </motion.div>
           </motion.span>
         </motion.h1>
@@ -151,7 +170,7 @@ export default function HeroSection() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 1, duration: 0.8 }}
           >
-            Luôn Lắng Nghe Bạn
+            {t.subtitle}
           </motion.p>
 
           {/* Animated Line */}
@@ -171,8 +190,7 @@ export default function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 2, duration: 0.8 }}
         >
-          Mọi ý kiến, góp ý của bạn đều quan trọng với chúng tôi. Hãy chia sẻ để
-          GhepXe ngày càng hoàn thiện hơn.
+          {t.description}
         </motion.p>
       </motion.div>
     </section>

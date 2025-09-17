@@ -9,6 +9,7 @@ import {
   FaLinkedinIn,
 } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface Member {
   id: number;
@@ -105,7 +106,21 @@ const members: Member[] = [
   },
 ];
 
+const texts = {
+  vi: {
+    title: "Thành Viên",
+    subtitle: "Đội ngũ đồng sáng lập và điều hành",
+  },
+  en: {
+    title: "Members",
+    subtitle: "Co-founders and Executive Team",
+  },
+};
+
 export default function MemberSection() {
+  const { language } = useLanguage();
+  const t = texts[language as keyof typeof texts];
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -178,13 +193,13 @@ export default function MemberSection() {
             variants={itemVariants}
             style={{ fontFamily: "var(--font-roboto)" }}
           >
-            Thành Viên
+            {t.title}
           </motion.h2>
           <motion.p
             className="text-xl text-gray-600 max-w-2xl mx-auto"
             variants={itemVariants}
           >
-            Đội ngũ đồng sáng và điều hành
+            {t.subtitle}
           </motion.p>
         </motion.div>
 

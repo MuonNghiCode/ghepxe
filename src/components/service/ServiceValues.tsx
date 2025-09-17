@@ -2,46 +2,98 @@
 
 import Image from "next/image";
 import { easeOut, motion } from "framer-motion";
+import { useLanguage } from "@/context/LanguageContext";
 
-interface ValueCard {
-  icon: string;
-  title: string;
-  description: string;
-  alt: string;
-}
+const valueCardsData = {
+  vi: [
+    {
+      icon: "/aboutus/icon/toiuu.svg",
+      title: "Chu Đáo",
+      description:
+        "Hỗ trợ nhanh chóng – tận tâm từ lúc tạo đơn đến khi hàng được giao.",
+      alt: "Chu Đáo",
+    },
+    {
+      icon: "/aboutus/icon/tincay.svg",
+      title: "Tin Cậy",
+      description:
+        "Đảm bảo an toàn, minh bạch, rõ hành trình, luôn có hợp đồng điện tử.",
+      alt: "Tin Cậy",
+    },
+    {
+      icon: "/aboutus/icon/benvung.svg",
+      title: "Bền Vững",
+      description:
+        "Tối ưu xe trống chiều về, giảm thiểu khí thải CO₂ cho hành tinh xanh hơn.",
+      alt: "Bền Vững",
+    },
+    {
+      icon: "/aboutus/icon/linhhoat.svg",
+      title: "Linh Hoạt",
+      description:
+        "Ghép đơn tiện tuyến, đa dạng loại hàng từ nông sản đến nhu yếu phẩm.",
+      alt: "Linh Hoạt",
+    },
+  ],
+  en: [
+    {
+      icon: "/aboutus/icon/toiuu.svg",
+      title: "Thoughtful",
+      description:
+        "Quick and dedicated support from order creation to delivery.",
+      alt: "Thoughtful",
+    },
+    {
+      icon: "/aboutus/icon/tincay.svg",
+      title: "Reliable",
+      description:
+        "Ensured safety, transparency, clear routes, always with e-contracts.",
+      alt: "Reliable",
+    },
+    {
+      icon: "/aboutus/icon/benvung.svg",
+      title: "Sustainable",
+      description:
+        "Optimize empty vehicles, reduce CO₂ emissions for a greener planet.",
+      alt: "Sustainable",
+    },
+    {
+      icon: "/aboutus/icon/linhhoat.svg",
+      title: "Flexible",
+      description:
+        "Flexible order matching, diverse goods from agricultural to essentials.",
+      alt: "Flexible",
+    },
+  ],
+};
 
-const valueCards: ValueCard[] = [
-  {
-    icon: "/aboutus/icon/toiuu.svg",
-    title: "Chu Đáo",
-    description:
-      "Hỗ trợ nhanh chóng – tận tâm từ lúc tạo đơn đến khi hàng được giao.",
-    alt: "Tối Ưu",
+const texts = {
+  vi: {
+    title: (
+      <>
+        Vì một hành trình{" "}
+        <span className="text-[var(--primary-green)]">tiết kiệm</span> và{" "}
+        <span className="text-[var(--primary-green)]">bền vững</span>
+      </>
+    ),
+    desc: "Những giá trị cốt lõi tạo nên sự khác biệt của GhepXe",
   },
-  {
-    icon: "/aboutus/icon/tincay.svg",
-    title: "Tin Cậy",
-    description:
-      "Đảm bảo an toàn, minh bạch, rõ hành trình, luôn có hợp đồng điện tử.",
-    alt: "Tin Cậy",
+  en: {
+    title: (
+      <>
+        For a <span className="text-[var(--primary-green)]">saving</span> and{" "}
+        <span className="text-[var(--primary-green)]">sustainable</span> journey
+      </>
+    ),
+    desc: "Core values that make Ghepxe different",
   },
-  {
-    icon: "/aboutus/icon/benvung.svg",
-    title: "Bền Vững",
-    description:
-      "Tối ưu xe trống chiều về, giảm thiểu khí thải CO₂ cho hành tinh xanh hơn.",
-    alt: "Bền Vững",
-  },
-  {
-    icon: "/aboutus/icon/linhhoat.svg",
-    title: "Linh Hoạt",
-    description:
-      "Ghép đơn tiện tuyến, đa dạng loại hàng từ nông sản đến nhu yếu phẩm.",
-    alt: "Linh Hoạt",
-  },
-];
+};
 
 export default function ServiceValues() {
+  const { language } = useLanguage();
+  const valueCards = valueCardsData[language as keyof typeof valueCardsData];
+  const t = texts[language as keyof typeof texts];
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -98,9 +150,7 @@ export default function ServiceValues() {
               style={{ fontFamily: "var(--font-roboto)" }}
               variants={itemVariants}
             >
-              Vì một hành trình{" "}
-              <span className="text-[var(--primary-green)]">tiết kiệm</span> và{" "}
-              <span className="text-[var(--primary-green)]">bền vững</span>
+              {t.title}
             </motion.h2>
 
             <motion.p
@@ -108,7 +158,7 @@ export default function ServiceValues() {
               style={{ fontFamily: "var(--font-roboto)" }}
               variants={itemVariants}
             >
-              Những giá trị cốt lõi tạo nên sự khác biệt của GhepXe
+              {t.desc}
             </motion.p>
           </motion.div>
 

@@ -3,8 +3,67 @@ import { easeInOut, motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import Particle from "../ui/Particle";
 import Image from "next/image";
+import { useLanguage } from "@/context/LanguageContext";
+
+const benefitsData = {
+  vi: [
+    {
+      title: "Ghép xe linh hoạt",
+      desc: "Tự động kết nối đơn hàng theo tuyến và thời gian, giúp tận dụng xe rỗng hiệu quả",
+    },
+    {
+      title: "Tiết kiệm chi phí",
+      desc: "Giảm đến 30% chi phí logistics nhờ tối ưu tải trọng và không phí trung gian",
+    },
+    {
+      title: "Đa dạng hàng hóa",
+      desc: "Hỗ trợ từ hàng nhỏ lẻ, dễ vỡ đến hàng nặng, hàng cần điều kiện đặc biệt",
+    },
+    {
+      title: "Theo dõi thời gian thực",
+      desc: "Cập nhật trạng thái vận chuyển liên tục – rõ ràng, minh bạch từng bước",
+    },
+    {
+      title: "An toàn & minh bạch",
+      desc: "Tất cả thông tin đơn hàng và tài xế đều được lưu vết và kiểm soát tập trung",
+    },
+    {
+      title: "Giảm thiểu khí thải",
+      desc: "Tận dụng những chuyến xe rỗng giúp giảm thiểu 90% lượng CO2 thải ra môi trường",
+    },
+  ],
+  en: [
+    {
+      title: "Flexible ride matching",
+      desc: "Automatically connects orders by route and time, maximizing empty vehicle usage.",
+    },
+    {
+      title: "Cost saving",
+      desc: "Reduce logistics costs by up to 30% thanks to load optimization and no intermediaries.",
+    },
+    {
+      title: "Diverse goods",
+      desc: "Supports from small, fragile items to heavy or special-condition cargo.",
+    },
+    {
+      title: "Real-time tracking",
+      desc: "Continuous transport status updates – clear and transparent every step.",
+    },
+    {
+      title: "Safe & transparent",
+      desc: "All order and driver information is logged and centrally managed.",
+    },
+    {
+      title: "Reduce emissions",
+      desc: "Utilizing empty rides helps reduce up to 90% CO2 emissions.",
+    },
+  ],
+};
 
 export default function IntroduceSection() {
+  const { language } = useLanguage();
+  const benefits = benefitsData[language as keyof typeof benefitsData];
+
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
 
@@ -68,33 +127,6 @@ export default function IntroduceSection() {
     },
   };
 
-  const benefitsData = [
-    {
-      title: "Ghép xe linh hoạt",
-      desc: "Tự động kết nối đơn hàng theo tuyến và thời gian, giúp tận dụng xe rỗng hiệu quả",
-    },
-    {
-      title: "Tiết kiệm chi phí",
-      desc: "Giảm đến 30% chi phí logistics nhờ tối ưu tải trọng và không phí trung gian",
-    },
-    {
-      title: "Đa dạng hàng hóa",
-      desc: "Hỗ trợ từ hàng nhỏ lẻ, dễ vỡ đến hàng nặng, hàng cần điều kiện đặc biệt",
-    },
-    {
-      title: "Theo dõi thời gian thực",
-      desc: "Cập nhật trạng thái vận chuyển liên tục – rõ ràng, minh bạch từng bước",
-    },
-    {
-      title: "An toàn & minh bạch",
-      desc: "Tất cả thông tin đơn hàng và tài xế đều được lưu vết và kiểm soát tập trung",
-    },
-    {
-      title: "Giảm thiểu khí thải",
-      desc: "Tận dụng những chuyến xe rỗng giúp giảm thiểu 90% lượng CO2 thải ra môi trường",
-    },
-  ];
-
   return (
     <section
       ref={ref}
@@ -131,7 +163,7 @@ export default function IntroduceSection() {
             className="flex flex-col gap-16 xl:gap-20 flex-1 text-right pr-8 "
             variants={containerVariants}
           >
-            {benefitsData.slice(0, 3).map((item, index) => (
+            {benefits.slice(0, 3).map((item, index) => (
               <motion.div key={index} variants={leftItemVariants}>
                 <h3
                   className="text-2xl xl:text-3xl 2xl:text-4xl font-bold mb-3 text-[var(--primary-green)]"
@@ -165,7 +197,7 @@ export default function IntroduceSection() {
             className="flex flex-col gap-16 xl:gap-20 flex-1 text-left pl-8 "
             variants={containerVariants}
           >
-            {benefitsData.slice(3, 6).map((item, index) => (
+            {benefits.slice(3, 6).map((item, index) => (
               <motion.div key={index} variants={rightItemVariants}>
                 <h3
                   className="text-2xl xl:text-3xl 2xl:text-4xl font-bold mb-3 text-[var(--primary-green)]"
@@ -191,7 +223,7 @@ export default function IntroduceSection() {
             className="grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-10 md:gap-12"
             variants={containerVariants}
           >
-            {benefitsData.map((item, index) => (
+            {benefits.map((item, index) => (
               <motion.div
                 key={index}
                 className="text-center sm:text-left bg-gray-50 p-6 sm:p-8 rounded-2xl border border-gray-100 hover:shadow-lg transition-shadow duration-300"

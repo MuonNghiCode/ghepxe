@@ -2,40 +2,46 @@
 
 import Image from "next/image";
 import { easeOut, motion } from "framer-motion";
+import { useLanguage } from "@/context/LanguageContext";
 
-interface Requirement {
-  id: number;
-  text: string;
-}
+const requirementsData = {
+  vi: [
+    { id: 1, text: "CCCD (mặt trước & sau)" },
+    { id: 2, text: "Cà vẹt xe (Giấy đăng ký phương tiện)" },
+    { id: 3, text: "Giấy phép lái xe phù hợp với loại xe đăng ký" },
+    { id: 4, text: "Ảnh xe 4 góc bên cạnh" },
+    { id: 5, text: "Tuyến đường thường chạy" },
+    { id: 6, text: "Số điện thoại để nhận mã OTP đăng ký" },
+  ],
+  en: [
+    { id: 1, text: "Citizen ID (front & back)" },
+    { id: 2, text: "Vehicle registration certificate" },
+    { id: 3, text: "Driver's license suitable for registered vehicle type" },
+    { id: 4, text: "Photos of the vehicle from 4 angles" },
+    { id: 5, text: "Usual routes" },
+    { id: 6, text: "Phone number to receive OTP code" },
+  ],
+};
 
-const requirements: Requirement[] = [
-  {
-    id: 1,
-    text: "CCCD (mặt trước & sau)",
+const texts = {
+  vi: {
+    title1: "Bạn cần",
+    title2: "chuẩn bị",
+    btn: "TẢI APP NGAY",
   },
-  {
-    id: 2,
-    text: "Cà vẹt xe (Giấy đăng ký phương tiện)",
+  en: {
+    title1: "You need",
+    title2: "to prepare",
+    btn: "DOWNLOAD APP",
   },
-  {
-    id: 3,
-    text: "Giấy phép lái xe phù hợp với loại xe đăng ký",
-  },
-  {
-    id: 4,
-    text: "Ảnh xe 4 góc bên cạnh",
-  },
-  {
-    id: 5,
-    text: "Tuyến đường thường chạy",
-  },
-  {
-    id: 6,
-    text: "Số điện thoại để nhận mã OTP đăng ký",
-  },
-];
+};
 
 export default function RequirementsSection() {
+  const { language } = useLanguage();
+  const requirements =
+    requirementsData[language as keyof typeof requirementsData];
+  const t = texts[language as keyof typeof texts];
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -101,13 +107,13 @@ export default function RequirementsSection() {
               style={{ fontFamily: "var(--font-roboto)" }}
               variants={itemVariants}
             >
-              <span className="text-gray-800">Bạn cần</span>
+              <span className="text-gray-800">{t.title1}</span>
               <motion.span
                 className="text-[var(--primary-green)] relative"
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.2 }}
               >
-                chuẩn bị
+                {t.title2}
                 <motion.div
                   className="absolute -bottom-2 left-1/2 -translate-x-1/2 h-1 bg-[var(--primary-green)]/30 rounded-full"
                   initial={{ width: 0 }}
@@ -167,7 +173,7 @@ export default function RequirementsSection() {
                 }}
                 transition={{ duration: 0.3 }}
               >
-                <span className="text-lg font-semibold">TẢI APP NGAY</span>
+                <span className="text-lg font-semibold">{t.btn}</span>
                 <motion.div
                   className="w-8 h-8 bg-white rounded-full flex items-center justify-center group-hover:rotate-90 transition-transform duration-300"
                   whileHover={{ rotate: 90 }}
@@ -221,7 +227,7 @@ export default function RequirementsSection() {
               >
                 <Image
                   src="/partner/partner.png"
-                  alt="Bạn cần chuẩn bị"
+                  alt={t.title2}
                   width={900}
                   height={900}
                   className="w-full h-auto object-cover rounded-2xl shadow-2xl"
