@@ -32,7 +32,7 @@ const members: Member[] = [
     position: "Front-end Developer",
     image: "/aboutus/pmq.png",
     socialLinks: {
-      facebook: "https://facebook.com/phaminhquan",
+      facebook: "https://www.facebook.com/minhqquan.pham",
       instagram: "https://instagram.com/phaminhquan",
       twitter: "https://twitter.com/phaminhquan",
       google: "mailto:phaminhquan@gmail.com",
@@ -45,7 +45,7 @@ const members: Member[] = [
     position: "Front-end Developer",
     image: "/aboutus/mq.png",
     socialLinks: {
-      facebook: "https://facebook.com/leminhquang",
+      facebook: "https://www.facebook.com/minhwan0209/",
       instagram: "https://instagram.com/leminhquang",
       twitter: "https://twitter.com/leminhquang",
       google: "mailto:leminhquang@gmail.com",
@@ -56,9 +56,9 @@ const members: Member[] = [
     id: 3,
     name: "Huỳnh Vương Khang",
     position: "Backend Developer",
-    image: "/aboutus/vk.png",
+    image: "/aboutus/vuongkhang.jpg",
     socialLinks: {
-      facebook: "https://facebook.com/huynhvuongkhang",
+      facebook: "https://www.facebook.com/100087106733569",
       instagram: "https://instagram.com/huynhvuongkhang",
       twitter: "https://twitter.com/huynhvuongkhang",
       google: "mailto:huynhvuongkhang@gmail.com",
@@ -69,9 +69,9 @@ const members: Member[] = [
     id: 4,
     name: "Lê Thụy Linh Huyền",
     position: "International Business",
-    image: "/aboutus/lh.png",
+    image: "/aboutus/linhhuyen.jpg",
     socialLinks: {
-      facebook: "https://facebook.com/lethuylinhuyen",
+      facebook: "https://www.facebook.com/linhhuyenn.lethuy",
       instagram: "https://instagram.com/lethuylinhuyen",
       twitter: "https://twitter.com/lethuylinhuyen",
       google: "mailto:lethuylinhuyen@gmail.com",
@@ -82,7 +82,7 @@ const members: Member[] = [
     id: 5,
     name: "Bùi Thị Mỹ Anh",
     position: "Marketing",
-    image: "/aboutus/ma1.png",
+    image: "/aboutus/myanh.jpg",
     socialLinks: {
       facebook: "https://facebook.com/buithimyanh",
       instagram: "https://instagram.com/buithimyanh",
@@ -95,7 +95,7 @@ const members: Member[] = [
     id: 6,
     name: "Lê Thảo Vy",
     position: "Marketing",
-    image: "/aboutus/vl.png",
+    image: "/aboutus/vyle.jpg",
     socialLinks: {
       facebook: "https://facebook.com/lethaovy",
       instagram: "https://instagram.com/lethaovy",
