@@ -26,7 +26,6 @@
 ## 🛠️ Công nghệ sử dụng
 
 ### Frontend
-
 - **[Next.js 14](https://nextjs.org/)** - React framework với App Router
 - **[TypeScript](https://www.typescriptlang.org/)** - Type safety
 - **[Tailwind CSS](https://tailwindcss.com/)** - Utility-first CSS framework
@@ -34,13 +33,11 @@
 - **[React Icons](https://react-icons.github.io/react-icons/)** - Icon library
 
 ### Fonts & Typography
-
 - **[Google Fonts](https://fonts.google.com/)**
   - Roboto - Primary font
   - Roboto Serif - Brand font (GhepXe)
 
 ### Development Tools
-
 - **ESLint** - Code linting
 - **Prettier** - Code formatting
 - **CSS Variables** - Dynamic theming
@@ -48,19 +45,16 @@
 ## 🚀 Cài đặt và Chạy dự án
 
 ### Yêu cầu hệ thống
-
 - Node.js 18.0 hoặc cao hơn
 - npm, yarn, pnpm hoặc bun
 
 ### 1. Clone repository
-
 ```bash
 git clone https://github.com/your-username/ghepxe.git
 cd ghepxe
 ```
 
 ### 2. Cài đặt dependencies
-
 ```bash
 npm install
 # hoặc
@@ -72,7 +66,6 @@ bun install
 ```
 
 ### 3. Chạy development server
-
 ```bash
 npm run dev
 # hoặc
@@ -84,7 +77,6 @@ bun dev
 ```
 
 ### 4. Mở trình duyệt
-
 Truy cập [http://localhost:3000](http://localhost:3000) để xem kết quả.
 
 ## 📁 Cấu trúc thư mục
@@ -117,7 +109,6 @@ ghepxe/
 ## 🎨 Design System
 
 ### Màu sắc chính
-
 ```css
 :root {
   --primary-green: #00a982;
@@ -128,25 +119,22 @@ ghepxe/
 ```
 
 ### Typography
-
 ```css
 :root {
-  --font-roboto: "Roboto", sans-serif;
-  --font-roboto-serif: "Roboto Serif", serif;
+  --font-roboto: 'Roboto', sans-serif;
+  --font-roboto-serif: 'Roboto Serif', serif;
 }
 ```
 
 ## 📱 Trang chính
 
 ### 🏠 Homepage (`/`)
-
 - Hero section với animations
 - Tính năng chính
 - Testimonials
 - Call-to-action
 
 ### 📞 Contact (`/contact`)
-
 - Hero section
 - Form liên hệ với validation
 - Thông tin liên lạc
@@ -156,7 +144,6 @@ ghepxe/
 ## 🌐 Đa ngôn ngữ
 
 Dự án hỗ trợ 2 ngôn ngữ:
-
 - 🇻🇳 **Tiếng Việt** (mặc định)
 - 🇺🇸 **English**
 
@@ -184,13 +171,11 @@ npm run type-check
 ## 🚀 Deploy
 
 ### Vercel (Recommended)
-
 1. Push code lên GitHub
 2. Kết nối với [Vercel](https://vercel.com)
 3. Deploy tự động
 
 ### Các platform khác
-
 - **Netlify**: Hỗ trợ Next.js
 - **AWS Amplify**: Deploy với AWS
 - **Railway**: Simple deployment
@@ -212,7 +197,7 @@ Chúng tôi hoan nghênh mọi đóng góp! Vui lòng:
 ## 📞 Liên hệ
 
 - **Email**: ghepxe@gmail.com
-- **Website**: [https://ghepxe-jet.vercel.app/](https://ghepxe-jet.vercel.app/)
+- **Website**: [https://ghepxe-jet.vercel.app](https://ghepxe-jet.vercel.app/)
 - **GitHub**: [https://github.com/your-username/ghepxe](https://github.com/your-username/ghepxe)
 
 ## 🙏 Acknowledgments
