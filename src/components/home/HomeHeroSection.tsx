@@ -74,13 +74,25 @@ export default function HomeHeroSection() {
   return (
     <section
       className="relative w-full min-h-screen flex items-center justify-center bg-no-repeat bg-cover md:bg-[length:100%_130%] overflow-hidden "
-      style={{
-        backgroundImage: "url('/home/hero-bg2.png')",
-        backgroundPosition: "center center",
-      }}
+      // style={{
+      //   backgroundImage: "url('/home/hero-bg2.png')",
+      //   backgroundPosition: "center center",
+      // }}
     >
+      {/* Video background */}
+      <video
+        className="absolute inset-0 w-full h-full object-cover z-0"
+        autoPlay
+        loop
+        muted
+        playsInline
+      >
+        <source src="/home/ghepxe.mp4" type="video/mp4" />
+        {/* Add a fallback message if needed */}
+      </video>
+
       <div className="absolute inset-0 z-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70 md:bg-gradient-to-r md:from-black/80 md:to-black/20" />
-      <motion.img
+      {/* <motion.img
         src="/home/hero-bg1.png"
         alt="Hero"
         className="absolute z-10 pointer-events-none hidden md:block"
@@ -96,7 +108,7 @@ export default function HomeHeroSection() {
         initial={{ x: "100%", opacity: 0 }}
         animate={{ x: "0%", opacity: 1 }}
         transition={{ duration: 2, ease: "easeOut" }}
-      />
+      /> */}
 
       {/* Content */}
       <div className="relative z-20 flex justify-center w-full">
