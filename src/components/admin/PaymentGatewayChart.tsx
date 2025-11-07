@@ -23,16 +23,14 @@ export default function PaymentGatewayChart({
       {};
 
     payments
-      .filter((p) => p.status === "Completed")
+      .filter((p) => p.status.toLowerCase() === "completed")
       .forEach((p) => {
         if (!gatewayData[p.paymentGateway]) {
           gatewayData[p.paymentGateway] = { count: 0, revenue: 0 };
         }
         gatewayData[p.paymentGateway].count++;
-        // Only add positive amounts to revenue
-        if (p.amount > 0) {
-          gatewayData[p.paymentGateway].revenue += p.amount;
-        }
+        // Add all amounts (positive and negative) - tổng dương trừ âm tự động
+        gatewayData[p.paymentGateway].revenue += p.amount;
       });
 
     const gateways = Object.keys(gatewayData);

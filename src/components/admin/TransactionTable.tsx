@@ -110,6 +110,7 @@ export default function TransactionTable({
               <option value="Pending">Đang chờ</option>
               <option value="Failed">Thất bại</option>
               <option value="Cancelled">Đã hủy</option>
+              <option value="Expired">Hết hạn</option>
             </select>
           </div>
         </div>
@@ -181,13 +182,17 @@ export default function TransactionTable({
                   <td className="py-4 px-6 text-center">
                     <span
                       className={`inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold ${
-                        payment.status === "Completed"
+                        payment.status.toLowerCase() === "completed"
                           ? "bg-green-100 text-green-700 shadow-sm"
-                          : payment.status === "Pending"
+                          : payment.status.toLowerCase() === "pending"
                           ? "bg-yellow-100 text-yellow-700 shadow-sm"
-                          : payment.status === "Failed"
+                          : payment.status.toLowerCase() === "failed"
                           ? "bg-red-100 text-red-700 shadow-sm"
-                          : "bg-gray-100 text-gray-700 shadow-sm"
+                          : payment.status.toLowerCase() === "cancelled"
+                          ? "bg-gray-100 text-gray-700 shadow-sm"
+                          : payment.status.toLowerCase() === "expired"
+                          ? "bg-blue-100 text-blue-700 shadow-sm"
+                          : "bg-purple-100 text-purple-700 shadow-sm"
                       }`}
                     >
                       <span className="w-1.5 h-1.5 rounded-full bg-current mr-1.5"></span>

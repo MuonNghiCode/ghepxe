@@ -21,7 +21,7 @@ export default function RevenueChart({ payments }: RevenueChartProps) {
     const revenueByDate: { [key: string]: number } = {};
 
     payments
-      .filter((p) => p.status === "Completed" && p.amount > 0)
+      .filter((p) => p.status.toLowerCase() === "completed" && p.amount > 0)
       .forEach((p) => {
         const date = new Date(p.createdAt).toLocaleDateString("vi-VN");
         revenueByDate[date] = (revenueByDate[date] || 0) + p.amount;

@@ -23,12 +23,15 @@ export default function AdminDashboard() {
         totalRevenue: 0,
         totalOrders: 0,
         growthRate: 0,
+        ordersGrowthRate: 0,
         totalUsers: 0,
       };
     }
 
-    // Filter only completed transactions
-    const completedPayments = payments.filter((p) => p.status === "Completed");
+    // Filter only completed transactions (case-insensitive)
+    const completedPayments = payments.filter(
+      (p) => p.status.toLowerCase() === "completed"
+    );
 
     // Filter only completed transactions with positive amounts (for counting orders)
     const completedPositivePayments = completedPayments.filter(
@@ -45,6 +48,7 @@ export default function AdminDashboard() {
     const last7Days = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
     const last14Days = new Date(now.getTime() - 14 * 24 * 60 * 60 * 1000);
 
+    // Revenue growth rate
     const recentRevenue = completedPayments
       .filter((p) => {
         const date = new Date(p.createdAt);
@@ -59,10 +63,32 @@ export default function AdminDashboard() {
       })
       .reduce((sum, p) => sum + p.amount, 0);
 
-    const growthRate =
-      previousRevenue > 0
-        ? ((recentRevenue - previousRevenue) / previousRevenue) * 100
-        : recentRevenue > 0
+    let growthRate = 0;
+    if (previousRevenue > 0) {
+      growthRate = ((recentRevenue - previousRevenue) / previousRevenue) * 100;
+    } else if (recentRevenue > 0) {
+      growthRate = 100;
+    } else if (previousRevenue < 0 && recentRevenue > previousRevenue) {
+      growthRate = 100;
+    } else if (previousRevenue < 0 && recentRevenue < previousRevenue) {
+      growthRate = -100;
+    }
+
+    // Orders growth rate (số đơn hàng)
+    const recentOrders = completedPositivePayments.filter((p) => {
+      const date = new Date(p.createdAt);
+      return date >= last7Days;
+    }).length;
+
+    const previousOrders = completedPositivePayments.filter((p) => {
+      const date = new Date(p.createdAt);
+      return date >= last14Days && date < last7Days;
+    }).length;
+
+    const ordersGrowthRate =
+      previousOrders > 0
+        ? ((recentOrders - previousOrders) / previousOrders) * 100
+        : recentOrders > 0
         ? 100
         : 0;
 
@@ -73,6 +99,7 @@ export default function AdminDashboard() {
       totalRevenue,
       totalOrders: completedPositivePayments.length, // CHỈ ĐẾM ĐƠN COMPLETED VÀ DƯƠNG
       growthRate,
+      ordersGrowthRate,
       totalUsers: uniqueUsers,
     };
   }, [payments]);
@@ -119,8 +146,10 @@ export default function AdminDashboard() {
           title="Đơn hàng"
           value={stats.totalOrders}
           icon={Package}
-          change="+8%"
-          changeType="increase"
+          change={`${
+            stats.ordersGrowthRate >= 0 ? "+" : ""
+          }${stats.ordersGrowthRate.toFixed(1)}%`}
+          changeType={stats.ordersGrowthRate >= 0 ? "increase" : "decrease"}
         />
         <StatsCard
           title="Doanh thu"

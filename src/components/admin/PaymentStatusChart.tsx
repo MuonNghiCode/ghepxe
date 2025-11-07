@@ -22,7 +22,10 @@ export default function PaymentStatusChart({
     const statusCount: { [key: string]: number } = {};
 
     payments.forEach((p) => {
-      statusCount[p.status] = (statusCount[p.status] || 0) + 1;
+      const normalizedStatus = p.status.toLowerCase();
+      const displayStatus =
+        normalizedStatus.charAt(0).toUpperCase() + normalizedStatus.slice(1);
+      statusCount[displayStatus] = (statusCount[displayStatus] || 0) + 1;
     });
 
     const colors: { [key: string]: string } = {
@@ -30,6 +33,7 @@ export default function PaymentStatusChart({
       Pending: "#f59e0b",
       Failed: "#ef4444",
       Cancelled: "#6b7280",
+      Expired: "#3b82f6",
     };
 
     return {
