@@ -49,37 +49,40 @@ export default function AdminSidebar() {
   };
 
   return (
-    <aside className="w-64 bg-white border-r border-gray-200 flex flex-col h-screen fixed left-0 top-0">
-      {/* Logo */}
-      <div className="h-16 flex items-center px-6 border-b border-gray-200">
+    <aside className="w-64 bg-gradient-to-b from-white to-gray-50 border-r border-gray-200 flex flex-col h-screen fixed left-0 top-0 shadow-lg">
+      {/* Logo with Gradient */}
+      <div className="h-16 flex items-center px-6 border-b border-gray-200 bg-gradient-to-r from-[var(--primary-green)] to-[var(--secondary-green)]">
         <h1
-          className="text-2xl font-bold text-[var(--primary-green)]"
+          className="text-2xl font-bold text-white"
           style={{ fontFamily: "var(--font-roboto-serif)" }}
         >
           GhepXe Admin
         </h1>
       </div>
 
-      {/* User Info */}
-      <div className="px-6 py-4 border-b border-gray-200">
+      {/* User Info with Enhanced Design */}
+      <div className="px-6 py-5 border-b border-gray-200 bg-white">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full bg-[var(--primary-green)] flex items-center justify-center text-white font-bold">
-            {user?.username?.charAt(0).toUpperCase() || "A"}
+          <div className="relative">
+            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[var(--primary-green)] to-[var(--secondary-green)] flex items-center justify-center text-white font-bold text-lg shadow-lg">
+              {user?.username?.charAt(0).toUpperCase() || "A"}
+            </div>
+            <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-white"></div>
           </div>
           <div className="flex-1 min-w-0">
-            <p className="text-sm font-medium text-gray-900 truncate">
+            <p className="text-sm font-bold text-gray-900 truncate">
               {user?.username || "Admin"}
             </p>
             <p className="text-xs text-[var(--gray-text)] truncate">
-              {user?.email || ""}
+              {user?.email || "admin@ghepxe.com"}
             </p>
           </div>
         </div>
       </div>
 
-      {/* Menu Items */}
-      <nav className="flex-1 px-4 py-4 overflow-y-auto">
-        <ul className="space-y-1">
+      {/* Menu Items with Enhanced Design */}
+      <nav className="flex-1 px-4 py-6 overflow-y-auto">
+        <ul className="space-y-2">
           {menuItems.map((item) => {
             const Icon = item.icon;
             const isActive = pathname === item.href;
@@ -88,14 +91,25 @@ export default function AdminSidebar() {
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all ${
+                  className={`group flex items-center gap-3 px-4 py-3.5 rounded-xl transition-all duration-300 ${
                     isActive
-                      ? "bg-[var(--primary-green)] text-white"
-                      : "text-[var(--gray-text)] hover:bg-gray-100"
+                      ? "bg-gradient-to-r from-[var(--primary-green)] to-[var(--secondary-green)] text-white shadow-lg shadow-[var(--primary-green)]/30"
+                      : "text-[var(--gray-text)] hover:bg-gray-100 hover:text-[var(--primary-green)]"
                   }`}
                 >
-                  <Icon className="w-5 h-5" />
-                  <span className="font-medium">{item.title}</span>
+                  <div
+                    className={`p-2 rounded-lg transition-all ${
+                      isActive
+                        ? "bg-white/20"
+                        : "bg-gray-100 group-hover:bg-[var(--primary-green)]/10"
+                    }`}
+                  >
+                    <Icon className="w-5 h-5" />
+                  </div>
+                  <span className="font-semibold">{item.title}</span>
+                  {isActive && (
+                    <div className="ml-auto w-1.5 h-1.5 rounded-full bg-white"></div>
+                  )}
                 </Link>
               </li>
             );
@@ -103,14 +117,16 @@ export default function AdminSidebar() {
         </ul>
       </nav>
 
-      {/* Logout Button */}
-      <div className="px-4 py-4 border-t border-gray-200">
+      {/* Logout Button with Enhanced Design */}
+      <div className="px-4 py-4 border-t border-gray-200 bg-white">
         <button
           onClick={handleLogout}
-          className="flex items-center gap-3 px-4 py-3 rounded-lg w-full text-[var(--gray-text)] hover:bg-red-50 hover:text-red-600 transition-all"
+          className="w-full flex items-center gap-3 px-4 py-3.5 rounded-xl text-red-600 hover:bg-red-50 transition-all duration-300 group hover:shadow-md"
         >
-          <LogOut className="w-5 h-5" />
-          <span className="font-medium">Đăng xuất</span>
+          <div className="p-2 rounded-lg bg-red-50 group-hover:bg-red-100 transition-all">
+            <LogOut className="w-5 h-5" />
+          </div>
+          <span className="font-semibold">Đăng xuất</span>
         </button>
       </div>
     </aside>

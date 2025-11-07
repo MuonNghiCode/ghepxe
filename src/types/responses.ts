@@ -52,7 +52,23 @@ export interface ProfileResponseData {
     shipRequestsCount: number;
 }
 
+export interface PaymentData {
+    id: string;
+    userId: string;
+    orderId: string;
+    amount: number;
+    paymentGateway: string;
+    status: string;
+    orderInfo: string;
+    resultCode: number;
+    message: string;
+    createdAt: string;
+    updatedAt: string;
+    expiresAt: string | null;
+}
+
 export type BaseRespose = ApiResponse<null>;
 export type LoginResponse = ApiResponse<LoginResponseData>;
 export type LogoutResponse = ApiResponse<LogoutResponseData>;
 export type ProfileResponse = ApiResponse<ProfileResponseData>;
+export type PaymentResponse = ApiResponse<PaymentData[]>;

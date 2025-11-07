@@ -44,6 +44,9 @@ export const API_ENDPOINTS = {
   FILE: {
     UPLOAD: "/api/User/File/upload",
     GET_FILE: "/api/User/File/presigned-url/{fileId}"
+  },
+  PAYMENT: {
+    GET_ALL: "/api/Payment/history/all"
   }
 } as const;
 

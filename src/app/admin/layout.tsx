@@ -18,10 +18,12 @@ export default function AdminLayout({
       router.push("/login");
     } else if (!isLoading && user) {
       // Check if user is admin
-      const isAdmin = user.roles.some(role => 
-        role.toLowerCase() === 'admin' || role.toLowerCase() === 'administrator'
+      const isAdmin = user.roles.some(
+        (role) =>
+          role.toLowerCase() === "admin" ||
+          role.toLowerCase() === "administrator"
       );
-      
+
       if (!isAdmin) {
         router.push("/login");
       }
@@ -43,15 +45,11 @@ export default function AdminLayout({
   }
 
   return (
-    <div className="min-h-screen bg-[#f8f9fa]">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100">
       <AdminSidebar />
       <div className="ml-64">
         <AdminHeader />
-        <main className="pt-16">
-          <div className="p-6">
-            {children}
-          </div>
-        </main>
+        <main className="pt-16 p-8">{children}</main>
       </div>
     </div>
   );
