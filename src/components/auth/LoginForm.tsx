@@ -31,9 +31,13 @@ export default function LoginForm() {
       await login({ email, password });
       console.log("Login successful, redirecting to /admin");
       router.push("/admin");
-    } catch (err: any) {
+    } catch (err) {
       console.error("Login failed:", err);
-      setError(err.message || "Đăng nhập thất bại. Vui lòng thử lại.");
+      const errorMessage =
+        err instanceof Error
+          ? err.message
+          : "Đăng nhập thất bại. Vui lòng thử lại.";
+      setError(errorMessage);
     } finally {
       setIsLoading(false);
     }

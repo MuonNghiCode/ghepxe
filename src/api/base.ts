@@ -56,17 +56,17 @@ class BaseApiService {
         )
     }
 
-    protected async get<T>(url: string, params?: any): Promise<ApiResponse<T>> {
+    protected async get<T>(url: string, params?: Record<string, unknown>): Promise<ApiResponse<T>> {
         const response = await this.api.get<ApiResponse<T>>(url, { params });
         return response.data;
     }
 
-    protected async post<T>(url: string, data?: any): Promise<ApiResponse<T>> {
+    protected async post<T>(url: string, data?: unknown): Promise<ApiResponse<T>> {
         const response = await this.api.post<ApiResponse<T>>(url, data);
         return response.data;
     }
 
-    protected async put<T>(url: string, data?: any): Promise<ApiResponse<T>> {
+    protected async put<T>(url: string, data?: unknown): Promise<ApiResponse<T>> {
         const response = await this.api.put<ApiResponse<T>>(url, data);
         return response.data;
     }

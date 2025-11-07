@@ -26,8 +26,9 @@ export function usePayments(): UsePaymentResult {
       } else {
         throw new Error(response.error?.description || "Failed to fetch payments");
       }
-    } catch (err: any) {
-      setError(err.message || "An error occurred while fetching payments");
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : "An error occurred while fetching payments";
+      setError(errorMessage);
       console.error("Error fetching payments:", err);
     } finally {
       setIsLoading(false);

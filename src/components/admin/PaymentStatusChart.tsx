@@ -3,11 +3,15 @@ import { useMemo } from "react";
 import { PaymentData } from "@/types/responses";
 
 // Import Highcharts dynamically
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 let Highcharts: any = null;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 let HighchartsReact: any = null;
 
 if (typeof window !== "undefined") {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
   Highcharts = require("highcharts");
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
   HighchartsReact = require("highcharts-react-official").default;
 }
 

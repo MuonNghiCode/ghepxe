@@ -1,7 +1,7 @@
 "use client";
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { authService } from "@/services/authService";
-import { LoginRequest, LoginResponseData, ProfileResponseData } from "@/types";
+import { LoginRequest, ProfileResponseData } from "@/types";
 
 interface AuthContextType {
   user: ProfileResponseData | null;
@@ -87,7 +87,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       } else {
         throw new Error(response.error?.description || "Đăng nhập thất bại");
       }
-    } catch (error: any) {
+    } catch (error) {
       console.error("Login error:", error);
       // Clear any partial state
       localStorage.removeItem("token");
@@ -125,7 +125,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       } else {
         throw new Error(response.error?.description || "Failed to get profile");
       }
-    } catch (error: any) {
+    } catch (error) {
       console.error("Get profile error:", error);
       throw error;
     }

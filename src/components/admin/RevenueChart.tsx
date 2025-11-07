@@ -3,11 +3,15 @@ import { useMemo } from "react";
 import { PaymentData } from "@/types/responses";
 
 // Import Highcharts dynamically
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 let Highcharts: any = null;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 let HighchartsReact: any = null;
 
 if (typeof window !== "undefined") {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
   Highcharts = require("highcharts");
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
   HighchartsReact = require("highcharts-react-official").default;
 }
 
@@ -52,12 +56,14 @@ export default function RevenueChart({ payments }: RevenueChartProps) {
       yAxis: {
         title: { text: "Doanh thu (VNĐ)" },
         labels: {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           formatter: function (this: any) {
             return new Intl.NumberFormat("vi-VN").format(this.value);
           },
         },
       },
       tooltip: {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         formatter: function (this: any) {
           return `<b>${this.x}</b><br/>Doanh thu: ${new Intl.NumberFormat(
             "vi-VN",

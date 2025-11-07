@@ -2,7 +2,7 @@ export interface ApiErrorResponse {
     type: string;
     status: number;
     detail: string;
-    errors: any;
+    errors: Record<string, unknown> | null;
 }
 
 export interface ErrorResponseModel {
