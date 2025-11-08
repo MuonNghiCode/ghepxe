@@ -15,6 +15,11 @@ class AuthService extends BaseApiService {
     async getProfile(): Promise<ProfileResponse> {
         return this.get<ProfileResponseData>(API_ENDPOINTS.USER.PROFILE);
     }
+
+    async getUserProfile(userId: string): Promise<ProfileResponse> {
+        const endpoint = API_ENDPOINTS.USER.GET_PROFILE.replace("{userId}", userId);
+        return this.get<ProfileResponseData>(endpoint);
+    }
 }
 
 export const authService = new AuthService();

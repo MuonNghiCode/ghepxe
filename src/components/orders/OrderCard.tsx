@@ -1,11 +1,28 @@
+import { useState } from "react";
+import Image from "next/image";
 import { ShipRequestData } from "@/types";
-import { Package, MapPin, Clock, Truck, User, Phone, Star } from "lucide-react";
+import {
+  Package,
+  MapPin,
+  Clock,
+  Truck,
+  User,
+  Phone,
+  Star,
+  UserCircle,
+} from "lucide-react";
+import { useUserProfile } from "@/hooks/useUserProfile";
+import OrderDetailDialog from "./OrderDetailDialog";
 
 interface OrderCardProps {
   request: ShipRequestData;
 }
 
 export default function OrderCard({ request }: OrderCardProps) {
+  const { userProfile, isLoading: loadingUser } = useUserProfile(
+    request.userId
+  );
+  const [showDetail, setShowDetail] = useState(false);
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleString("vi-VN", {
       year: "numeric",
@@ -66,7 +83,7 @@ export default function OrderCard({ request }: OrderCardProps) {
             </div>
             <div>
               <h3 className="font-bold text-gray-900 text-sm">
-                #{request.shipRequestId.slice(0, 8)}
+                #{request.shipRequestId.slice(-5)}
               </h3>
               <p className="text-xs text-[var(--gray-text)]">
                 {request.itemType}
@@ -127,15 +144,55 @@ export default function OrderCard({ request }: OrderCardProps) {
           </span>
         </div>
 
+        {/* User info (order creator) */}
+        <div className="flex items-center gap-3 p-3 bg-green-50 rounded-lg border border-green-200">
+          <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center overflow-hidden">
+            {userProfile?.avatarUrl ? (
+              <Image
+                src={userProfile.avatarUrl}
+                alt={userProfile.username || "User"}
+                width={40}
+                height={40}
+                className="rounded-full object-cover"
+              />
+            ) : (
+              <UserCircle className="w-5 h-5 text-green-600" />
+            )}
+          </div>
+          <div className="flex-1">
+            {loadingUser ? (
+              <div className="space-y-1">
+                <div className="h-4 w-24 bg-green-200 rounded animate-pulse"></div>
+                <div className="h-3 w-32 bg-green-200 rounded animate-pulse"></div>
+              </div>
+            ) : userProfile ? (
+              <>
+                <p className="text-sm font-semibold text-gray-900">
+                  {userProfile.username}
+                </p>
+                <div className="flex items-center gap-2 text-xs text-gray-600">
+                  <Phone className="w-3 h-3" />
+                  {userProfile.phone}
+                </div>
+              </>
+            ) : (
+              <p className="text-sm text-gray-500">Đang tải thông tin...</p>
+            )}
+          </div>
+          <div className="text-xs text-green-600 font-medium">Người đặt</div>
+        </div>
+
         {/* Driver info (if assigned) */}
         {request.driverId && (
           <div className="flex items-center gap-3 p-3 bg-blue-50 rounded-lg border border-blue-200">
-            <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+            <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center overflow-hidden">
               {request.driverAvatarUrl ? (
-                <img
+                <Image
                   src={request.driverAvatarUrl}
                   alt={request.driverName || "Driver"}
-                  className="w-10 h-10 rounded-full object-cover"
+                  width={40}
+                  height={40}
+                  className="rounded-full object-cover"
                 />
               ) : (
                 <User className="w-5 h-5 text-blue-600" />
@@ -157,6 +214,7 @@ export default function OrderCard({ request }: OrderCardProps) {
                 )}
               </div>
             </div>
+            <div className="text-xs text-blue-600 font-medium">Tài xế</div>
           </div>
         )}
 
@@ -168,11 +226,23 @@ export default function OrderCard({ request }: OrderCardProps) {
             <span>•</span>
             <span>{request.itemCategory}</span>
           </div>
-          <button className="text-[var(--primary-green)] hover:text-[var(--primary-green)]/80 font-semibold text-sm transition-colors">
+          <button
+            onClick={() => setShowDetail(true)}
+            className="text-[var(--primary-green)] hover:text-[var(--primary-green)]/80 font-semibold text-sm transition-colors"
+          >
             Chi tiết →
           </button>
         </div>
       </div>
+
+      {/* Detail Dialog */}
+      <OrderDetailDialog
+        open={showDetail}
+        onOpenChange={setShowDetail}
+        order={request}
+        userProfile={userProfile}
+        loadingUser={loadingUser}
+      />
     </div>
   );
 }

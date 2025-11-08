@@ -1,12 +1,15 @@
 "use client";
 
-import { useState, useMemo } from "react";
-import { RefreshCw } from "lucide-react";
+import { useState, useMemo, useEffect } from "react";
+import { RefreshCw, Package } from "lucide-react";
 import { useShipRequests } from "@/hooks/useShipRequests";
+import { useRouteRequests } from "@/hooks/useRouteRequests";
+import { ShipRequestData, RouteRequestData } from "@/types/responses";
 import OrderTabs from "@/components/orders/OrderTabs";
 import OrderFilters from "@/components/orders/OrderFilters";
 import OrderList from "@/components/orders/OrderList";
 import OrderPagination from "@/components/orders/OrderPagination";
+import DriverOrderCard from "@/components/orders/DriverOrderCard";
 import {
   OrderLoadingSkeleton,
   OrderError,
@@ -15,24 +18,45 @@ import {
 const ITEMS_PER_PAGE = 10;
 
 export default function OrdersPage() {
-  const { shipRequests, isLoading, error, refetch } = useShipRequests();
+  const {
+    shipRequests,
+    isLoading: loadingShipRequests,
+    error: shipError,
+    refetch: refetchShipRequests,
+  } = useShipRequests();
+  const {
+    routeRequests,
+    isLoading: loadingRouteRequests,
+    error: routeError,
+    refetch: refetchRouteRequests,
+  } = useRouteRequests();
   const [activeTab, setActiveTab] = useState<"user" | "driver">("user");
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState<string>("All");
   const [currentPage, setCurrentPage] = useState(1);
 
-  // Filter orders based on tab (user orders don't have driver, driver orders have driver)
-  const tabFilteredOrders = useMemo(() => {
-    if (!shipRequests) return [];
-    if (activeTab === "user") {
-      return shipRequests.filter((order) => !order.driverId);
-    }
-    return shipRequests.filter((order) => order.driverId);
-  }, [shipRequests, activeTab]);
+  // Determine which data to use based on active tab
+  const isLoading =
+    activeTab === "user" ? loadingShipRequests : loadingRouteRequests;
+  const error = activeTab === "user" ? shipError : routeError;
 
-  // Apply search and status filters
-  const filteredOrders = useMemo(() => {
-    let filtered = tabFilteredOrders;
+  // Filter USER orders (orders without driver)
+  const userOrders = useMemo(() => {
+    if (!shipRequests) return [];
+    return shipRequests.filter((order) => !order.driverId);
+  }, [shipRequests]);
+
+  // Filter DRIVER routes (route requests)
+  const driverRoutes = useMemo(() => {
+    if (!routeRequests) return [];
+    return routeRequests;
+  }, [routeRequests]);
+
+  // Apply search and status filters for USER tab
+  const filteredUserOrders = useMemo(() => {
+    if (activeTab !== "user") return [];
+
+    let filtered = userOrders;
 
     // Search filter
     if (searchTerm) {
@@ -52,17 +76,48 @@ export default function OrdersPage() {
     }
 
     return filtered;
-  }, [tabFilteredOrders, searchTerm, statusFilter]);
+  }, [userOrders, searchTerm, statusFilter, activeTab]);
+
+  // Apply search and status filters for DRIVER tab
+  const filteredDriverRoutes = useMemo(() => {
+    if (activeTab !== "driver") return [];
+
+    let filtered = driverRoutes;
+
+    // Search filter
+    if (searchTerm) {
+      const search = searchTerm.toLowerCase();
+      filtered = filtered.filter(
+        (route) =>
+          route.routeRequestId.toLowerCase().includes(search) ||
+          route.pickupAddress.toLowerCase().includes(search) ||
+          route.dropoffAddress.toLowerCase().includes(search) ||
+          route.vehicle.licensePlate.toLowerCase().includes(search) ||
+          route.supportedCommodities.toLowerCase().includes(search)
+      );
+    }
+
+    // Status filter
+    if (statusFilter !== "All") {
+      filtered = filtered.filter((route) => route.status === statusFilter);
+    }
+
+    return filtered;
+  }, [driverRoutes, searchTerm, statusFilter, activeTab]);
+
+  // Get current filtered data based on tab
+  const currentFilteredData =
+    activeTab === "user" ? filteredUserOrders : filteredDriverRoutes;
 
   // Pagination
-  const totalPages = Math.ceil(filteredOrders.length / ITEMS_PER_PAGE);
-  const paginatedOrders = useMemo(() => {
+  const totalPages = Math.ceil(currentFilteredData.length / ITEMS_PER_PAGE);
+  const paginatedData = useMemo(() => {
     const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-    return filteredOrders.slice(startIndex, startIndex + ITEMS_PER_PAGE);
-  }, [filteredOrders, currentPage]);
+    return currentFilteredData.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+  }, [currentFilteredData, currentPage]);
 
   // Reset to page 1 when filters change
-  useMemo(() => {
+  useEffect(() => {
     setCurrentPage(1);
   }, [searchTerm, statusFilter, activeTab]);
 
@@ -76,7 +131,11 @@ export default function OrdersPage() {
 
   // Handle refresh
   const handleRefresh = () => {
-    refetch();
+    if (activeTab === "user") {
+      refetchShipRequests();
+    } else {
+      refetchRouteRequests();
+    }
     setSearchTerm("");
     setStatusFilter("All");
     setCurrentPage(1);
@@ -87,11 +146,11 @@ export default function OrdersPage() {
   }
 
   if (error) {
-    return <OrderError error={error} onRetry={refetch} />;
+    return <OrderError error={error} onRetry={handleRefresh} />;
   }
 
-  const userOrdersCount = shipRequests?.filter((o) => !o.driverId).length || 0;
-  const driverOrdersCount = shipRequests?.filter((o) => o.driverId).length || 0;
+  const userOrdersCount = userOrders.length;
+  const driverOrdersCount = driverRoutes.length;
 
   return (
     <div className="space-y-6">
@@ -133,12 +192,36 @@ export default function OrdersPage() {
           setCurrentPage(1);
         }}
         onClearSearch={() => setSearchTerm("")}
-        resultsCount={paginatedOrders.length}
-        totalCount={filteredOrders.length}
+        resultsCount={paginatedData.length}
+        totalCount={currentFilteredData.length}
       />
 
-      {/* Order List */}
-      <OrderList orders={paginatedOrders} />
+      {/* Order List - Show different component based on tab */}
+      {activeTab === "user" ? (
+        <OrderList orders={paginatedData as ShipRequestData[]} />
+      ) : (
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {paginatedData.length === 0 ? (
+            <div className="col-span-2 bg-white rounded-xl border border-gray-200 p-12 text-center">
+              <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Package className="w-8 h-8 text-gray-400" />
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                Không tìm thấy tuyến đường
+              </h3>
+              <p className="text-gray-600">
+                {searchTerm || statusFilter !== "All"
+                  ? "Thử thay đổi bộ lọc để xem kết quả khác"
+                  : "Chưa có tuyến đường nào trong danh sách này"}
+              </p>
+            </div>
+          ) : (
+            (paginatedData as RouteRequestData[]).map((route) => (
+              <DriverOrderCard key={route.routeRequestId} route={route} />
+            ))
+          )}
+        </div>
+      )}
 
       {/* Pagination */}
       {totalPages > 1 && (

@@ -1,9 +1,5 @@
 import { Package, RefreshCw } from "lucide-react";
 
-interface OrderLoadingProps {
-  onRetry?: () => void;
-}
-
 export function OrderLoadingSkeleton() {
   return (
     <div className="space-y-6">

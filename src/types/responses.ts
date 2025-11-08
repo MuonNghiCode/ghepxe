@@ -111,9 +111,59 @@ export interface ShipRequestData {
     status: string;
 }
 
+export interface VehicleData {
+    vehicleId: string;
+    licensePlate: string;
+    brand: string;
+    model: string;
+    year: number;
+    color: string;
+    vehicleType: string;
+    maxWeight: number;
+    maxVolume: number;
+    maxSeats: number;
+}
+
+export interface RouteShipRequest {
+    shipRequestId: string;
+    createdDate: string;
+}
+
+export interface RouteRequestData {
+    routeRequestId: string;
+    driverId: string;
+    vehicleId: string;
+    pickupAddress: string;
+    dropoffAddress: string;
+    pickupLatitude: number;
+    pickupLongitude: number;
+    dropoffLatitude: number;
+    dropoffLongitude: number;
+    departureTime: string;
+    estimatedArrivalTime: string | null;
+    isFullLoad: boolean;
+    availableWeight: number;
+    availableVolume: number;
+    supportedCommodities: string;
+    cargoHandlingNotes: string | null;
+    temperatureControlled: boolean;
+    minTemperatureCelsius: number | null;
+    maxTemperatureCelsius: number | null;
+    estimatedRouteCost: number;
+    estimatedFuelCost: number;
+    additionalNotes: string | null;
+    routePolyline: string | null;
+    status: string;
+    createdDate: string;
+    modifiedDate: string;
+    vehicle: VehicleData;
+    shipRequests: RouteShipRequest[];
+}
+
 export type BaseRespose = ApiResponse<null>;
 export type LoginResponse = ApiResponse<LoginResponseData>;
 export type LogoutResponse = ApiResponse<LogoutResponseData>;
 export type ProfileResponse = ApiResponse<ProfileResponseData>;
 export type PaymentResponse = ApiResponse<PaymentData[]>;
 export type ShipRequestResponse = ApiResponse<ShipRequestData[]>;
+export type RouteRequestResponse = ApiResponse<RouteRequestData[]>;
