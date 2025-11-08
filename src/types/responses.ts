@@ -67,8 +67,53 @@ export interface PaymentData {
     expiresAt: string | null;
 }
 
+export interface SpecialRequest {
+    returnDelivery: boolean;
+    loading: boolean;
+    driverAssistance: boolean;
+    smsNotification: boolean;
+    electronicInvoice: boolean;
+}
+
+export interface ShipRequestItemData {
+    itemId: string;
+    name: string;
+    amount: number;
+    weight: number;
+    description: string | null;
+    imageFileId: string | null;
+    imageUrl: string | null; 
+    size: string;
+}
+
+export interface ShipRequestData {
+    shipRequestId: string;
+    userId: string;
+    driverId: string | null;
+    driverName: string | null;
+    driverAvatarUrl: string | null;
+    driverRating: number | null;
+    driverPhone: string | null;
+    pickupAddress: string;
+    pickupLatitude: number;
+    pickupLongitude: number;
+    dropoffAddress: string;
+    dropoffLatitude: number;
+    dropoffLongitude: number;
+    pickupWindowStart: string;
+    pickupWindowEnd: string;
+    items: ShipRequestItemData[];
+    shipType: string;
+    itemCategory: string;
+    itemType: string;
+    specialRequest: SpecialRequest;
+    routePolyline: string | null;
+    status: string;
+}
+
 export type BaseRespose = ApiResponse<null>;
 export type LoginResponse = ApiResponse<LoginResponseData>;
 export type LogoutResponse = ApiResponse<LogoutResponseData>;
 export type ProfileResponse = ApiResponse<ProfileResponseData>;
 export type PaymentResponse = ApiResponse<PaymentData[]>;
+export type ShipRequestResponse = ApiResponse<ShipRequestData[]>;

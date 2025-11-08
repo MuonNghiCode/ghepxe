@@ -7,7 +7,6 @@ import {
   StatsCard,
   RevenueChart,
   PaymentStatusChart,
-  PaymentGatewayChart,
   TransactionTable,
   DashboardSkeleton,
 } from "@/components";
@@ -119,7 +118,7 @@ export default function AdminDashboard() {
   return (
     <div className="space-y-8">
       {/* Welcome Section with Gradient */}
-      <div className="relative bg-gradient-to-r from-[var(--primary-green)] to-[var(--secondary-green)] rounded-2xl p-8 text-white shadow-xl overflow-hidden">
+      <div className="relative bg-gradient-to-r from-[var(--primary-green)] to-[var(--secondary-green)] rounded-2xl p-8 mt-10 text-white shadow-xl overflow-hidden">
         <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-32 -mt-32"></div>
         <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/10 rounded-full -ml-24 -mb-24"></div>
         <div className="relative z-10">
@@ -171,34 +170,54 @@ export default function AdminDashboard() {
         />
       </div>
 
-      {/* Charts Section with Title */}
+      {/* Charts Section with Modern Layout */}
       <div className="space-y-6">
         <div className="flex items-center justify-between">
-          <h2 className="text-2xl font-bold text-gray-900">
-            Biểu đồ phân tích
-          </h2>
-          <div className="text-sm text-[var(--gray-text)]">
+          <div>
+            <h2 className="text-2xl font-bold text-gray-900">
+              Phân tích & Thống kê
+            </h2>
+            <p className="text-sm text-[var(--gray-text)] mt-1">
+              Tổng quan về doanh thu và trạng thái giao dịch
+            </p>
+          </div>
+          <div className="flex items-center gap-2 text-sm text-[var(--gray-text)] bg-gray-50 px-4 py-2 rounded-lg border border-gray-200">
+            <div className="w-2 h-2 bg-[var(--primary-green)] rounded-full animate-pulse"></div>
             Cập nhật: {new Date().toLocaleTimeString("vi-VN")}
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div className="transform hover:scale-[1.02] transition-transform duration-300">
-            <RevenueChart payments={payments} />
+        {/* Charts Grid - Modern 2 column layout */}
+        <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
+          {/* Revenue Chart - Larger emphasis */}
+          <div className="xl:col-span-1">
+            <div className="relative group">
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-[var(--primary-green)] to-[var(--secondary-green)] rounded-2xl opacity-0 group-hover:opacity-10 transition duration-300 blur"></div>
+              <div className="relative transform hover:scale-[1.01] transition-all duration-300">
+                <RevenueChart payments={payments} />
+              </div>
+            </div>
           </div>
-          <div className="transform hover:scale-[1.02] transition-transform duration-300">
-            <PaymentStatusChart payments={payments} />
-          </div>
-        </div>
 
-        {/* Payment Gateway Chart - Full width */}
-        <div className="transform hover:scale-[1.01] transition-transform duration-300">
-          <PaymentGatewayChart payments={payments} />
+          {/* Payment Status Chart */}
+          <div className="xl:col-span-1">
+            <div className="relative group">
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-[var(--primary-green)] to-[var(--secondary-green)] rounded-2xl opacity-0 group-hover:opacity-10 transition duration-300 blur"></div>
+              <div className="relative transform hover:scale-[1.01] transition-all duration-300">
+                <PaymentStatusChart payments={payments} />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
       {/* Transaction History Table */}
-      <TransactionTable payments={payments} error={error} />
+      <div className="relative">
+        <div className="absolute -inset-0.5 bg-gradient-to-r from-[var(--primary-green)] to-[var(--secondary-green)] rounded-2xl opacity-5"></div>
+        <div className="relative">
+          <TransactionTable payments={payments} error={error} />
+        </div>
+      </div>
     </div>
   );
 }
