@@ -98,12 +98,10 @@ export default function DownloadSection() {
   };
 
   return (
-    <motion.section
+    // Đổi motion.section thành section thường, chỉ giữ motion cho các phần tử con cần thiết
+    <section
       ref={ref}
       className="relative min-h-screen w-full bg-[var(--white)] py-12 sm:py-16 lg:py-20 flex items-center justify-center overflow-hidden"
-      initial="hidden"
-      animate={isInView ? "visible" : "hidden"}
-      variants={containerVariants}
     >
       <div className="absolute z-0 top-0 w-full h-full">
         <Image
@@ -130,6 +128,8 @@ export default function DownloadSection() {
         <motion.div
           className="flex flex-col items-center md:items-start justify-center gap-4 md:w-1/2 text-center md:text-left"
           variants={textVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
         >
           <motion.h3
             className="text-2xl md:text-5xl lg:text-6xl font-bold text-[var(--gray-text)] mb-2"
@@ -195,6 +195,8 @@ export default function DownloadSection() {
         <motion.div
           className="flex flex-col items-center md:w-1/2 relative"
           variants={phoneVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
         >
           <Link href="/download">
             <motion.div
@@ -242,6 +244,6 @@ export default function DownloadSection() {
           </Link>
         </motion.div>
       </div>
-    </motion.section>
+    </section>
   );
 }
