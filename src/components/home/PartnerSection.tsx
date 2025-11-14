@@ -41,17 +41,6 @@ export default function PartnerSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        duration: 0.6,
-        staggerChildren: 0.2,
-      },
-    },
-  };
-
   const itemVariants = {
     hidden: { opacity: 0, y: 30 },
     visible: {
@@ -124,12 +113,10 @@ export default function PartnerSection() {
   };
 
   return (
-    <motion.section
+    // Đổi motion.section thành section thường, chỉ giữ motion cho các phần tử con cần thiết
+    <section
       ref={ref}
       className="relative min-h-[500px] flex items-center justify-center w-full bg-[#efefef] py-16 overflow-hidden"
-      initial="hidden"
-      animate={isInView ? "visible" : "hidden"}
-      variants={containerVariants}
     >
       {/* Background Particles */}
       <Particle
@@ -148,6 +135,8 @@ export default function PartnerSection() {
           <motion.div
             className="flex-shrink-0 w-full lg:w-auto"
             variants={imageVariants}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
           >
             <motion.div
               className="relative group"
@@ -168,6 +157,8 @@ export default function PartnerSection() {
           <motion.div
             className="flex-1 text-center lg:text-left"
             variants={textVariants}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
           >
             <motion.h2
               className="text-[var(--primary-green)] text-3xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
@@ -196,7 +187,12 @@ export default function PartnerSection() {
         </div>
 
         {/* Button section với thiết kế cải tiến */}
-        <motion.div className="flex justify-center" variants={buttonVariants}>
+        <motion.div
+          className="flex justify-center"
+          variants={buttonVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
           <motion.div
             className="bg-[var(--primary-green)] w-full rounded-3xl flex flex-col sm:flex-row justify-between items-center p-8 shadow-2xl relative overflow-hidden"
             whileHover={{
@@ -258,6 +254,6 @@ export default function PartnerSection() {
           </motion.div>
         </motion.div>
       </div>
-    </motion.section>
+    </section>
   );
 }

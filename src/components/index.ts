@@ -34,3 +34,13 @@ export { default as ServiceHeroSection } from './service/ServiceHeroSection';
 export { default as ServiceValues } from './service/ServiceValues';
 export { default as ServiceFAQSection } from './service/ServiceFAQSection';
 export { default as ServiceIntroduceSection } from './service/ServiceIntroducesSection';
+
+// Admin components
+export { default as AdminSidebar } from "./admin/AdminSidebar";
+export { default as AdminHeader } from "./admin/AdminHeader";
+export { default as StatsCard } from "./admin/StatsCard";
+export { default as RevenueChart } from "./admin/RevenueChart";
+export { default as PaymentStatusChart } from "./admin/PaymentStatusChart";
+export { default as PaymentGatewayChart } from "./admin/PaymentGatewayChart";
+export { default as TransactionTable } from "./admin/TransactionTable";
+export { default as DashboardSkeleton } from "./admin/DashboardSkeleton";

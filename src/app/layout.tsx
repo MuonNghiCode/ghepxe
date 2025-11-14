@@ -4,6 +4,7 @@ import "./globals.css";
 import "../styles/colors.css";
 import { ScrollToTop } from "@/components";
 import { LanguageProvider } from "@/context/LanguageContext";
+import { AuthProvider } from "@/context/AuthContext";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 // Roboto (sans-serif)
 const roboto = Roboto({
@@ -34,11 +35,13 @@ export default function RootLayout({
       <body
         className={`${roboto.variable} ${robotoSerif.variable} antialiased min-h-screen flex flex-col`}
       >
-        <LanguageProvider>
-          <ScrollToTop />
-          {children}
-          <SpeedInsights />
-        </LanguageProvider>
+        <AuthProvider>
+          <LanguageProvider>
+            <ScrollToTop />
+            {children}
+            <SpeedInsights />
+          </LanguageProvider>
+        </AuthProvider>
       </body>
     </html>
   );
